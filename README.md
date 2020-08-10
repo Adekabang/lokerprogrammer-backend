@@ -10,18 +10,18 @@
 ## Cara Instalasi
 Pastikan di komputer anda terinstall Composer dan Nodejs.
 - Clone repository
-- Jalankan perintah composer install di root directory aplikasinya (tunggu hingga selesai)
-- Ubah nama file .env.example jadi .env
-- Setting database di .env 
-- Jalankan perintah 'php artisan key:generate'
-- Jalankan perintah 'php artisan migrate'
-- Jalankan perintah 'php artisan db:seed'
-- Lalu masuk ke folder public/backend/ (buka termiinal disini)
-- Jalankan perintah npm install untuk menginstall package node_modules.
+- Jalankan perintah <b>composer install</b> di root directory aplikasinya (tunggu hingga selesai)
+- Ubah nama file <b>.env.example</b> jadi <b>.env</b>
+- Setting database di <b>.env</b> 
+- Jalankan perintah <b>php artisan key:generate</b>
+- Jalankan perintah <b>php artisan migrate</b>
+- Jalankan perintah <b>php artisan db:seed</b>
+- Lalu masuk ke folder <b>public/backend/</b> (buka termiinal disini)
+- Ketikan diterminal <b>npm install</b> untuk menginstall package node_modules.
 - Yeay, you made it!
 
-- Jalankan perintah 'php artisan serve'
-- buka http://127.0.0.1:8000/admin
+- Jalankan perintah <b>php artisan serve</b>
+- Buka http://127.0.0.1:8000/admin
   
 ## License
 
