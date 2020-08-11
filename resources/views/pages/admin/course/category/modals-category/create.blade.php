@@ -1,4 +1,4 @@
-<form class="modal-part" id="modal-create-category" method="POST" action="{{ route('category.store') }}">
+<form class="modal-part" id="modal-create" method="POST" action="{{ route('category.store') }}">
   @csrf
   <div class="form-group">
     <label>Category Name</label>

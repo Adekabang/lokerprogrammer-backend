@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin\Course;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CategoryCourseRequest extends FormRequest
 {
@@ -24,7 +25,10 @@ class CategoryCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_name' => 'required|unique:category_courses,category_name'
+            'category_name' => [
+                'required',
+                Rule::unique('category_courses', 'category_name')->ignore($this->category)
+            ]
         ];
     }
 }

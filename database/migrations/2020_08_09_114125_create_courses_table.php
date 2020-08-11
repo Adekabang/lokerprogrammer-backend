@@ -19,7 +19,7 @@ class CreateCoursesTable extends Migration
             $table->string('course_name');
             $table->string('slug');
             $table->string('course_author');
-            $table->string('price');
+            $table->string('label');
             $table->string('thumbnail');
             $table->string('description');
             $table->string('status');

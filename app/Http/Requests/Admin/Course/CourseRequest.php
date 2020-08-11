@@ -24,10 +24,10 @@ class CourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_course' => 'required|exist:category_courses,id',
+            'category_course' => 'required|exists:category_courses,id',
             'course_name' => 'required',
             'course_author' => 'required',
-            'price' => 'required',
+            'label' => 'required|string|in:FREE,PREMIUM',
             'category_course' => 'required',
             'description' => 'required',
             'status' => 'required|string|in:PUBLISH,PENDING'

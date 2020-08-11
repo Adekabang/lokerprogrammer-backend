@@ -85,6 +85,5 @@
 
 @push('sweetalert-script')
 <script src="{{ url('backend') }}/node_modules/sweetalert/dist/sweetalert.min.js"></script>
-{{-- <script src="{{ url('vendor') }}/modal-js/create-lesson.js"></script>
-<script src="{{ url('vendor') }}/modal-js/delete-lesson.js"></script> --}}
+<script src="{{ url('backend') }}/assets/js/page/modules-sweetalert.js"></script>
 @endpush
