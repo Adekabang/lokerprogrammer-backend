@@ -15,4 +15,8 @@ Route::prefix('admin')
         Route::resource('company', 'CompanyController');
         Route::resource('job', 'JobController');
         Route::resource('blog', 'BlogController');
+
+        //Category Job
+        Route::resource('category-job','JobCategoryController');
+
     });
