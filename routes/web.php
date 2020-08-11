@@ -7,6 +7,7 @@ Route::prefix('admin')
     // ->middleware(['auth', 'verified', 'admin'])
     ->group(function () {
         Route::get('/', 'DashboardController@index')->name('dashboard');
+       
         Route::get('/course/show', 'Course\CourseController@showAll')->name('show-course');
 
         Route::resource('course', 'Course\CourseController');
@@ -14,5 +15,8 @@ Route::prefix('admin')
         Route::resource('lesson', 'Course\LessonController');
         Route::resource('company', 'CompanyController');
         Route::resource('job', 'JobController');
-        Route::resource('blog', 'BlogController');
+        Route::resource('blog', 'Blog\BlogController');
+        Route::resource('category_Blog', 'Blog\BlogCategorieController');
+        
     });
+   

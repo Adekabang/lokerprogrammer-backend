@@ -31,7 +31,13 @@
         </li>
         <li class="menu-header">Blog</li>
         <li class="nav-item dropdown">
-          <a href="#" class="nav-link has-dropdown"><i class="fas fa-newspaper"></i><span>Blog List</span></a>
+          <a href="#" class="nav-link has-dropdown"><i class="fas fa-newspaper"></i><span>Blog List </span></a>
+          <ul class="dropdown-menu">
+            {{-- <li class="{{ (request()->segment(2) == 'BlogCategory') ? 'active' : ''}}"><a class="nav-link" href="{{ route('blogCategories.index') }}">Course Categories </a></li> --}}
+            
+            <li class="{{ (request()->segment(2) == 'category_Blog') ? 'active' : ''}}""><a class="nav-link" href="{{ route('category_Blog.index') }}">Category Blog </a></li>
+            <li class="{{ (request()->segment(2) == 'blog') ? 'active' : ''}}""><a class="nav-link" href="{{ route('blog.index') }}">Blog List </a></li>
+          </ul>
         </li>
       </ul>
   </aside>
