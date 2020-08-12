@@ -29,19 +29,19 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-striped" id="table-1">
+                <table class="table table-bordered data-table" id="table"">
                   <thead>
                     <tr>
                       <th>No</th>
                       <th>Judul Blog</th>
-                      <th>Category</th>
+                      <th>slug</th>
                       <th>Image</th>
                       <th>Content Blog</th>
                       <th class="text-center">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @php
+                    {{-- @php
                         $i = 1;
                     @endphp
                     @forelse ($data_blog as $blog)
@@ -66,7 +66,7 @@
                     <tr>
                       <td colspan="4" class="text-center">There's no category yet</td>
                     </tr>
-                  @endforelse
+                  @endforelse --}}
                   </tbody>
                 </table>
               </div>
@@ -77,12 +77,53 @@
     </div>
   </section>
 </div>
-@include('pages.admin.blog.category_blog.modals-blog.create')
+
+@push('addon-script')
+<script type="text/javascript">
+  $(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+      });
+      var table = $('.data-table').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax: "{{ route('blog.index') }}",
+          columns: [
+              {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+              {data: 'judul_blog', name: 'judul_blog'},
+              {data: 'slug_blog_id', name: 'slug_blog_id  '},
+              {data: 'image', name: 'image'},
+              {data: 'content_blog', name: 'content_blog'},
+              {data: 'action', name: 'action', orderable: false, searchable: false},
+          ]
+          
+      });
+      
+      $('body').on('click', '.deleteItem', function () {
+              
+              confirm("Are You sure want to delete !");
+                var category_id = $(this).data("id");
+              
+              
+                $.ajax({
+                    type: "DELETE",
+                    url: "{{ route('blog.store') }}"+'/'+category_id,
+                    success: function (data) {
+                        table.draw();
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+            });
+            
+      
+      
+    });
+</script>
+@endpush
+
 @endsection
 
-@push('sweetalert-script')
-{{-- Pushed Script --}}
-  <script src="{{ url('backend') }}/node_modules/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="{{ url('vendor') }}/modal-js/create-category.js"></script>
-  <script src="{{ url('vendor') }}/modal-js/delete-category.js"></script>
-@endpush

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Blog\Blog;
 use App\Models\Blog\BlogCategory;
 use Illuminate\Support\Str;
+use Yajra\Datatables\Datatables;
 
 class BlogController extends Controller
 {
@@ -15,12 +16,27 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      
-        $data_blog=Blog::all();
+        if ($request->ajax()) {
+            $data = Blog::latest()->get();
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                        $url=route('blog.edit',$row->id);
+                           $btn = '<a href="'.$url.'" data-toggle="tooltip"  data-id="" data-original-title="Edit" class="edit btn btn-primary btn-sm editItem">Edit</a>';
+                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteItem">Delete</a>';
+                            return $btn;
+                    })
+                    ->addColumn('image',function($row){
+                        $url= asset('backend/assets/img/blog/'.$row->image);
+                        return '<img src="'.$url.'" border="0" width="40" class="img-rounded" align="center" />';
+                    })
+                    ->rawColumns(['image','action'])
+                    ->make(true);
+        }
        
-        return view('pages.admin.blog.blog_list.index',compact('data_blog'));
+        return view('pages.admin.blog.blog_list.index');
     }
 
     /**
@@ -58,7 +74,7 @@ class BlogController extends Controller
         $new_name = $image->getClientOriginalExtension();
         $image->move(public_path('backend/assets/img/blog'), $new_name);
 
-        Blog::create([
+        $data=Blog::create([
 
             'category_id'           => $request->category_id,
             'judul_blog'            => $request->judul_blog,
@@ -67,8 +83,9 @@ class BlogController extends Controller
             'image'                 => $new_name
 
         ]);
-          
+       
         return redirect('admin/blog')->withToastSuccess('data blog has created!');
+        // return response()->json($data);
     }
 
     /**
@@ -139,9 +156,9 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        $delete_blog=Blog::findOrFail($id);
-        $delete_blog->delete();
-        return redirect('admin/blog')->withToastSuccess('data blog has Deleted!');
+        Blog::find($id)->delete();
+        return response()->json(['success'=>'Product deleted successfully.']);
+
     }
     
 }

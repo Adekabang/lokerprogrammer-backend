@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog\BlogCategory;
 use Illuminate\Support\Str;
+use Yajra\Datatables\Datatables;
 
 class BlogCategorieController extends Controller
 {
@@ -14,10 +15,24 @@ class BlogCategorieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $categories=BlogCategory::latest()->get();
-        return view('pages.admin.blog.category_blog.categoryBlog',compact('categories'));
+    public function index(Request $request)
+    { 
+        if ($request->ajax()) {
+        $data = BlogCategory::latest()->get();
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+   
+                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editCategory">Edit</a>';
+   
+                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteCategory">Delete</a>';
+    
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        return view('pages.admin.blog.category_blog.index');
     }
 
     /**
@@ -34,27 +49,15 @@ class BlogCategorieController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+      BlogCategory::updateOrCreate(['id' => $request->id],
+      ['category_name' => $request->category_name,
+        'slug'=> $request->category_name ]);        
 
-            'category_name'     => 'required',
-        ]);
-
-      $data=$request->all();
-      $data['slug']=Str::slug($request->category_name);
-      BlogCategory::create($data);
-      return redirect('admin/category_Blog')->withToastSuccess('Category blog has created!');
+    return response()->json(['success'=>'Product saved successfully.']);
+    //   return redirect('admin/category_Blog')->withToastSuccess('Category blog has created!');
+      
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\BlogCategory  $blogCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(BlogCategory $blogCategory)
-    {
-        //
-    }
 
     /*
      * Update the specified resource in storage.
@@ -63,15 +66,11 @@ class BlogCategorieController extends Controller
      * @param  \App\BlogCategory  $blogCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function edit(Request $request, $id)
     {
-       
-        $data=$request->all();
-        $data['slug']=Str::slug($request->category_name);
-        $item=BlogCategory::findOrFail($id);
-        
-        $item->update($data);
-        return redirect('admin/category_Blog')->withToastSuccess('Category blog has updated!');
+        $category = BlogCategory::find($id);
+        return response()->json($category);
+        // return redirect('admin/category_Blog')->withToastSuccess('Category blog has updated!');
     }
 
     /**
@@ -80,10 +79,11 @@ class BlogCategorieController extends Controller
      * @param  \App\BlogCategory  $blogCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
-        $category_blog=BlogCategory::findOrFail($id);
-        $category_blog->delete();
-        return redirect('admin/category_Blog')->withToastSuccess('Category blog has Deleted!');
+        BlogCategory::find($id)->delete();
+        return response()->json(['success'=>'Product deleted successfully.']);
+
+        // return redirect('admin/category_Blog')->withToastSuccess('Category blog has Deleted!');
     }
 }
