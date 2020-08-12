@@ -15,7 +15,7 @@
           <a href="#" class="nav-link has-dropdown"><i class="fas fa-book"></i><span>Course</span></a>
           <ul class="dropdown-menu">
             <li class="{{ (request()->segment(2) == 'category') ? 'active' : ''}}"><a class="nav-link" href="{{ route('category.index') }}">Course Categories </a></li>
-            
+
             <li class="{{ (request()->segment(2) == 'course') ? 'active' : ''}}"><a class="nav-link" href="{{ route('course.index') }}">Courses List </a></li>
 
             <li class="{{ (request()->segment(2) == 'lesson') ? 'active' : ''}}"><a class="nav-link" href="{{ route('lesson.index') }}">Course Lessons</a></li>
@@ -23,7 +23,12 @@
         </li>
         <li class="menu-header">Company</li>
         <li class="nav-item dropdown">
-          <a href="#" class="nav-link has-dropdown"><i class="fas fa-building"></i><span>Company List</span></a>
+          <a href="#" class="nav-link has-dropdown"><i class="fas fa-building"></i><span>Company</span></a>
+            <ul class="dropdown-menu">
+                <li class="{{ (request()->segment(2) == 'package') ? 'active' : ''}}"><a class="nav-link" href="{{ route('package.index') }}">Company Package </a></li>
+
+                <li class="{{ (request()->segment(2) == 'company') ? 'active' : ''}}"><a class="nav-link" href="{{ route('company.index') }}">Company List </a></li>
+            </ul>
         </li>
         <li class="menu-header">Jobs</li>
         <li class="nav-item dropdown">

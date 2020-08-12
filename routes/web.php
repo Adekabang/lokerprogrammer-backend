@@ -12,7 +12,8 @@ Route::prefix('admin')
         Route::resource('course', 'Course\CourseController');
         Route::resource('category', 'Course\CategoryController');
         Route::resource('lesson', 'Course\LessonController');
-        Route::resource('company', 'CompanyController');
+        Route::resource('company', 'Company\CompanyController');
+        Route::resource('package', 'Company\PackageController');
         Route::resource('job', 'JobController');
         Route::resource('blog', 'BlogController');
     });

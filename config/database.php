@@ -105,6 +105,8 @@ return [
     */
 
     'migrations' => 'migrations',
+    'charset' => 'utf8',
+    'collation' => 'utf_unicode_ci',
 
     /*
     |--------------------------------------------------------------------------
