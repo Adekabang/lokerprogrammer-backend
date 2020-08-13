@@ -18,5 +18,7 @@ Route::prefix('admin')
 
         //Category Job
         Route::resource('category-job','JobCategoryController');
+        Route::resource('joblist','JobListController');
+        Route::post('category-job/getCategory','JobListController@getCategory')->name('category-job.getCategory');        
 
     });

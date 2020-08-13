@@ -31,7 +31,7 @@
         <li class="nav-item dropdown {{ (request()->segment(2) == 'job-list') || (request()->segment(2) == 'category-job')  ? 'active' : ''}}">
           <a href="#" class="nav-link has-dropdown"><i class="fas fa-briefcase"></i><span>Job</span></a>
           <ul class="dropdown-menu">
-            <li class="{{ (request()->segment(2) == 'job-list') ? 'active' : ''}}"><a class="nav-link" href="#">Job List</a></li>
+            <li class="{{ (request()->segment(2) == 'job-list') ? 'active' : ''}}"><a class="nav-link" href="{{ route('joblist.index') }}">Job List</a></li>
             
             <li class="{{ (request()->segment(2) == 'category-job') ? 'active' : ''}}"><a class="nav-link" href="{{ route('category-job.index') }}">Category Job</a></li>          
           </ul>
