@@ -34,7 +34,7 @@
                     <tr>
                       <th>No</th>
                       <th>Judul Blog</th>
-                      <th>slug</th>
+                      <th>category</th>
                       <th>Image</th>
                       <th>Content Blog</th>
                       <th class="text-center">Action</th>
@@ -93,7 +93,7 @@
           columns: [
               {data: 'DT_RowIndex', name: 'DT_RowIndex'},
               {data: 'judul_blog', name: 'judul_blog'},
-              {data: 'slug_blog_id', name: 'slug_blog_id  '},
+              {data: 'category_id', name: 'category_id'},
               {data: 'image', name: 'image'},
               {data: 'content_blog', name: 'content_blog'},
               {data: 'action', name: 'action', orderable: false, searchable: false},

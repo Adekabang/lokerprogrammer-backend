@@ -32,7 +32,14 @@ class BlogController extends Controller
                         $url= asset('backend/assets/img/blog/'.$row->image);
                         return '<img src="'.$url.'" border="0" width="40" class="img-rounded" align="center" />';
                     })
-                    ->rawColumns(['image','action'])
+                    ->addColumn('category_id',function($row){
+                        return isset($row->category) ? $row->category->category_name : '-';
+                    })
+
+                    ->addColumn('content_blog',function($row){
+                        return $row->content_blog;
+                    })
+                    ->rawColumns(['content_blog','category_id','image','action'])
                     ->make(true);
         }
        
@@ -155,8 +162,12 @@ class BlogController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        Blog::find($id)->delete();
+    {          
+        $data=Blog::findOrFail($id);
+        if (isset($data->image) && file_exists('backend/assets/img/blog/'.$data->image)) {
+            unlink('backend/assets/img/blog//'.$data->image);
+        }
+        $data->delete();
         return response()->json(['success'=>'Product deleted successfully.']);
 
     }
