@@ -26,17 +26,17 @@
               <h4>Fill the form</h4>
             </div>
             <div class="card-body">
-              <form action="{{ route('lesson.store') }}" method="post" enctype="multipart/form-data">
+              <form action="{{ route('lesson.update', $lesson->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group row mb-4">
                   <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Course</label>
                   <div class="col-sm-12 col-md-7">
                     <select class="form-control custom-select selectric @error('course_id') is-invalid @enderror" name="course_id" required>
-                      <option value="{{ $lesson->courses->course_name }}" selected>Prev. Status: {{ $lesson->courses->course_name }}</option>
-                      @foreach ($courses as $course)
-                        <option value="{{ $course->id }}">{{ $course->course_name }}</option>
-                      @endforeach
+                      <option value="{{ $lesson->courses ? $lesson->courses->course_id  : 'null' }}" disabled selected>Prev. Course: {{ $lesson->courses ? $lesson->courses->course_name  : 'Course Null'}}</option>
+                        @foreach ($courses as $course)
+                          <option value="{{ $course->id }}">{{ $course->course_name }}</option>
+                        @endforeach
                     </select>
                   </div>
                 </div>
@@ -88,16 +88,10 @@
               </div>
               </div>
               <div class="form-group row mb-4">
-                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description</label>
-                <div class="col-sm-12 col-md-7">
-                  <textarea class="summernote-simple" name="description" required>{{ old('description') ?? $lesson->description }}</textarea>
-                </div>
-              </div>
-              <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
                 <div class="col-sm-12 col-md-7">
                   <select class="form-control selectric" name="status" required>
-                    <option value="{{ $lesson->status }}" selected>Prev. Status: {{ $lesson->status }}</option>
+                    <option value="{{ $lesson->status }}" disabled selected>Prev. Status: {{ $lesson->status }}</option>
                     <option value="PUBLISH">Publish</option>
                     <option value="PENDING">Pending</option>
                   </select>

@@ -20,7 +20,7 @@
                   <i class="fas fa-clipboard-list"></i>
                 </div>
               </div>
-              <input type="text" class="form-control" name="category_name" value="{{ old('category_name') ?? $cat->category_name}}">
+              <input type="text" class="form-control" name="category_name" value="{{ $cat->category_name}}">
             </div>
           </div>
         </div>

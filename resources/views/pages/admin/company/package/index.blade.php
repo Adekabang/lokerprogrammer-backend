@@ -24,48 +24,22 @@
                             <div class="card-header d-flex justify-content-between">
                                 <h4>Company Package</h4>
                                 <div>
-                                    <a id="modal-create" href="{{ route('package.index') }}" class="btn btn-primary">Add Package</a>
+                                    <a href = "javascript:void(0)" id="createPackage" class="btn btn-primary">Add Package</a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped" id="table-1">
+                                    <table class="table table-bordered data-table" id="table">
                                         <thead>
                                         <tr>
-                                            <th class="text-center">No</th>
+                                            <th>No</th>
                                             <th>Nama Package</th>
                                             <th>Price Package</th>
                                             <th>Package Expired</th>
-                                            {{--                                            <th class="text-center">Thumbnail</th>--}}
                                             <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @php
-                                            $i = 1;
-                                        @endphp
-                                        @forelse ($package as $data)
-                                            <tr>
-                                                <td>{{ $i++ }}</td>
-                                                <td>{{ $data->package_name }}</td>
-                                                <td>
-                                                    {{ $data->price_package }}
-                                                </td>
-                                                <td>{{ $data->package_expired }}</td>
-                                                <td class="text-center">
-                                                    <a data-toggle="modal" data-target="#editModal{{ $data->id }}" href="#editModal{{ $data->id }}" class="btn btn-sm btn-round btn-icon icon-left btn-success"><i class="far fa-fw fa-edit"></i> Edit</a>
-                                                    <form id="delete-form-{{ $data->id }}" class="d-inline" action="{{ route('package.destroy', $data->id) }}" method="post">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button class="delete-confirm btn btn-sm btn-round btn-icon icon-left btn-danger" data-id="{{ $data->id }}"><i class="fas fa-fw fa-trash-alt"></i> Delete</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="7" class="text-center">There's no course yet</td>
-                                            </tr>
-                                        @endforelse
                                         </tbody>
                                     </table>
                                 </div>
@@ -76,13 +50,94 @@
             </div>
         </section>
     </div>
-    @include('pages.admin.company.package.modal-package.edit')
-    @include('pages.admin.company.package.modal-package.create')
+    @include('pages.admin.company.package.modal-package')
 @endsection
 
-@push('sweetalert-script')
+@push('addon-script')
     {{-- Pushed Script --}}
-    <script src="{{ url('backend') }}/node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{ url('vendor') }}/modal-js/create-category.js"></script>
-    <script src="{{ url('vendor') }}/modal-js/delete-category.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var table = $('.data-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('package.index') }}",
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'package_name', name: 'package_name'},
+                    {data: 'price_package', name: 'price_package'},
+                    {data: 'package_expired', name: 'package_expired'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            });
+
+            $('#createPackage').click(function () {
+                $('#saveBtn').val("create-Package");
+                $('#id').val('');
+                $('#package_form').trigger("reset");
+                $('#modelHeading').html("Create New Package");
+                $('#ajaxModel').modal('show');
+            });
+
+            $('body').on('click', '.editPackage', function () {
+                var package_id = $(this).data('id');
+                $.get("{{ route('package.index') }}" +'/' + package_id +'/edit', function (data) {
+                    $('#modelHeading').html("Edit Package");
+                    $('#saveBtn').val("edit-package");
+                    $('#ajaxModel').modal('show');
+                    $('#id').val(data.id);
+                    $('#package_name').val(data.package_name);
+                    $('#price_package').val(data.price_package);
+                    $('#package_expired').val(data.package_expired);
+                })
+            });
+
+            $('#saveBtn').click(function (e) {
+                e.preventDefault();
+                $(this).html('Save');
+
+                $.ajax({
+                    data: $('#package_form').serialize(),
+                    url: "{{ route('package.store') }}",
+                    type: "POST",
+                    dataType: 'json',
+                    success: function (data) {
+
+                        $('#package_form').trigger("reset");
+                        $('#ajaxModel').modal('hide');
+                        table.draw();
+
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                        $('#saveBtn').html('Save Changes');
+                    }
+                });
+            });
+
+            $('body').on('click', '.deletePackage', function () {
+
+                confirm("Are You sure want to delete !");
+                var package_id = $(this).data("id");
+
+                $.ajax({
+                    type: "DELETE",
+                    url: "{{ route('package.store') }}"+'/'+package_id,
+                    success: function (data) {
+                        table.draw();
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+            });
+
+        });
+
+
+    </script>
 @endpush

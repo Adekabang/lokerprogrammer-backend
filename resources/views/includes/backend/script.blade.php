@@ -20,7 +20,7 @@
   <script src="{{ url('backend') }}/node_modules/jquery_upload_preview/assets/js/jquery.uploadPreview.min.js"></script>
   <script src="{{ url('backend') }}/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
   {{-- ============= --}}
-  
+
   @stack('addon-script')
   @stack('sweetalert-script')
 

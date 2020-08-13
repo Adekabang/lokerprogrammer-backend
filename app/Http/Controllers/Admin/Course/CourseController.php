@@ -13,7 +13,7 @@ class CourseController extends Controller
     // Courses list page
     public function index()
     {
-        $courses = Course::latest()->get();
+        $courses = Course::with('category')->latest()->get();
         return \view('pages.admin.course.index', \compact('courses'));
     }
 
@@ -46,7 +46,7 @@ class CourseController extends Controller
         $course->category_id = $request->category_course;
         $course->slug = Str::slug($request->course_name);
         $course->course_author = $request->course_author;
-        $course->price = $request->price;
+        $course->label = $request->label;
         $course->thumbnail = $gambarnya;
         $course->description = $request->description;
         $course->status = $request->status;
@@ -93,7 +93,7 @@ class CourseController extends Controller
             'course_name' => $request->course_name,
             'slug' => Str::slug($request->course_name),
             'course_author' => $request->course_author,
-            'price' => $request->price,
+            'label' => $request->label,
             'thumbnail' => $gambarnya,
             'description' => $request->description,
             'status' => $request->status,

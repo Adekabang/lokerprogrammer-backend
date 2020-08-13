@@ -1,6 +1,6 @@
-$("#modal-create").fireModal({
+$("#launch-modal-create").fireModal({
     title: "Fill this form",
-    body: $("#modal-create-category"),
+    body: $("#modal-create"),
     footerClass: "bg-whitesmoke",
     autoFocus: true,
     buttons: [
@@ -8,7 +8,7 @@ $("#modal-create").fireModal({
             text: "Submit",
             submit: true,
             class: "btn btn-primary btn-shadow",
-            handler: function (modal) {},
-        },
-    ],
+            handler: function(modal) {}
+        }
+    ]
 });

@@ -29,50 +29,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped" id="table-1">
+                                    <table class="table table-bordered data-table" id="table">
                                         <thead>
                                         <tr>
-                                            <th class="text-center">No</th>
+                                            <th>No</th>
                                             <th>Nama Company</th>
                                             <th>location</th>
                                             <th>Contact</th>
                                             <th>Description</th>
                                             <th>expired date</th>
-{{--                                            <th class="text-center">Thumbnail</th>--}}
+                                            <th>Package</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @php
-                                            $i = 1;
-                                        @endphp
-                                        @forelse ($company as $data)
-                                            <tr>
-                                                <td>{{ $i++ }}</td>
-                                                <td>{{ $data->company_name }}</td>
-                                                <td>
-                                                    {{ $data->location }}
-                                                </td>
-                                                <td>{{ $data->contact }}</td>
-                                                <td>{{ $data->description }}</td>
-                                                <td>{{ $data->expired_date }}</td>
-                                                <td>
-                                                    <a href="{{ route('company.edit', $data->id) }}" class="btn btn-sm btn-round btn-icon icon-left btn-success"><i class="far fa-fw fa-edit"></i> Edit</a>
-                                                    <button type="button" onclick="deleteData({{ $data->id }})" class="btn btn-sm btn-round btn-icon icon-left btn-danger"><i class="fas fa-fw fa-trash-alt"></i> Delete</a>
-                                                    </button>
-                                                    <form id="delete-form-{{ $data->id }}"
-                                                          action="{{ route('company.destroy',$data->id) }}" method="POST"
-                                                          style="display: none;">
-                                                        @csrf
-                                                        @method('delete')
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="7" class="text-center">There's no course yet</td>
-                                            </tr>
-                                        @endforelse
                                         </tbody>
                                     </table>
                                 </div>
@@ -85,7 +55,44 @@
     </div>
 @endsection
 
-@push('sweetalert-script')
-    <script src="{{ url('backend') }}/node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{ url('backend') }}/assets/js/page/modules-sweetalert.js"></script>
+@push('addon-script')
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var table = $('.data-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('company.index') }}",
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'company_name', name: 'company_name'},
+                    {data: 'location', name: 'location'},
+                    {data: 'contact', name: 'contact'},
+                    {data: 'description', name: 'description'},
+                    {data: 'expired_date', name: 'expired_date'},
+                    {data: 'package_id', name: 'package_id'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            });
+
+            $('body').on('click', '.deleteItem', function () {
+                confirm("Are You sure want to delete !");
+                var company_id = $(this).data("id");
+                $.ajax({
+                    type: "DELETE",
+                    url: "{{ route('company.store') }}"+'/'+company_id,
+                    success: function (data) {
+                        table.draw();
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+            });
+        });
+    </script>
 @endpush

@@ -38,7 +38,7 @@ class LessonController extends Controller
     public function edit($id)
     {
         $courses = Course::all();
-        $lesson = CourseLesson::findOrFail($id);
+        $lesson = CourseLesson::with('courses')->findOrFail($id);
         return \view('pages.admin.course.lesson.crud-lesson.edit', \compact('courses', 'lesson'));
     }
 

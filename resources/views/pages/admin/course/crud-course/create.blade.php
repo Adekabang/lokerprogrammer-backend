@@ -52,9 +52,16 @@
                 </div>
               </div>
               <div class="form-group row mb-4">
-                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Price</label>
+                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Label</label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioFree" name="label" class="custom-control-input @error('label') is-invalid @enderror" value="{{ 'FREE' }}" required>
+                    <label class="custom-control-label" for="customRadioFree">FREE</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioPremium" class="custom-control-input @error('label') is-invalid @enderror" name="label" value="{{ 'PREMIUM' }}" required>
+                    <label class="custom-control-label" for="customRadioPremium">PREMIUM</label>
+                  </div>
                   @error('price')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

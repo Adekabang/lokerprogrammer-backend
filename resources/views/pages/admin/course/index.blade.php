@@ -53,7 +53,7 @@
                       <td>{{ $i++ }}</td>
                       <td>{{ $course->course_name }}</td>
                       <td>
-                        {{ $course->category->category_name }}
+                        {{ $course->category ? $course->category->category_name : '' }}
                       </td>
                       <td>@currency($course->price)</td>
                       <td class="align-middle text-center">

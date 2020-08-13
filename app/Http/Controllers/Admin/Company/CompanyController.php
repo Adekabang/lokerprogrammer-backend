@@ -6,20 +6,31 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Company\CompanyRequest;
 use App\Models\Company\Package;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class CompanyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $company = Company::latest()->get();
-        return view('pages.admin.company.index', compact('company'));
-    }
 
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Company::latest()->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $url=route('company.edit',$row->id);
+                    $btn = '<a href="'.$url.'" data-toggle="tooltip"  data-id="" data-original-title="Edit" class="edit btn btn-primary btn-sm editItem">Edit</a>';
+                    $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteItem">Delete</a>';
+                    return $btn;
+                })
+                ->addColumn('package_id',function($row){
+                    return isset($row->package) ? $row->package->package_name : '-';
+                })
+                ->rawColumns(['package_id','action'])
+                ->make(true);
+        }
+        return view('pages.admin.company.index');
+    }
 
     public function create()
     {
@@ -28,12 +39,6 @@ class CompanyController extends Controller
         return view('pages.admin.company.crud-company.create', compact('data', 'package'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(CompanyRequest $request)
     {
         $data = new Company();
@@ -45,27 +50,9 @@ class CompanyController extends Controller
         $data->user_id = '1';
         $data->package_id = $request->package_id;
         $data->save();
-
         return  redirect('admin/company')->withToastSuccess('Company has Created');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $company = Company::findOrFail($id);
@@ -73,13 +60,6 @@ class CompanyController extends Controller
         return view('pages.admin.company.crud-company.edit', compact('company', 'package'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(CompanyRequest $request, $id)
     {
         Company::where('id', $id)->update([
@@ -90,20 +70,12 @@ class CompanyController extends Controller
            'expired_date' => $request->expired_date,
            'package_id' => $request->package_id
         ]);
-
         return  redirect('admin/company')->withToastSuccess('Company has Updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $data = Company::findOrFail($id)->delete();
-
-        return redirect('admin/company')->withToastSuccess('Company has Deleted');
+        return response()->json(['success'=>'Company Deleted Succesfully']);
     }
 }
