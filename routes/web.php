@@ -17,6 +17,11 @@ Route::prefix('admin')
                 Route::resource('lesson', 'LessonController');
             });
         Route::get('/', 'DashboardController@index')->name('dashboard');
+        Route::get('/course/show', 'Course\CourseController@showAll')->name('show-course');
+        Route::resource('blog', 'Blog\BlogController');
+        Route::resource('category_Blog', 'Blog\BlogCategorieController');
+        
+    });
         Route::resource('company', 'Company\CompanyController');
         Route::resource('package', 'Company\PackageController');
         Route::resource('company', 'CompanyController');
