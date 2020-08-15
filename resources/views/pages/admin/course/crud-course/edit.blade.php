@@ -62,9 +62,16 @@
                 </div>
               </div>
               <div class="form-group row mb-4">
-                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Price</label>
+                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Label</label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') ?? $course->price }}" required>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioFree" name="label" class="custom-control-input @error('label') is-invalid @enderror" value="FREE" required {{ $course->label == 'FREE' ? 'checked' : '' }}>
+                    <label class="custom-control-label" for="customRadioFree">FREE</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioPremium" class="custom-control-input @error('label') is-invalid @enderror" name="label" value="PREMIUM" required {{ $course->label == 'PREMIUM' ? 'checked' : '' }}>
+                    <label class="custom-control-label" for="customRadioPremium">PREMIUM</label>
+                  </div>
                   @error('price')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -76,7 +83,7 @@
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category</label>
                 <div class="col-sm-12 col-md-7">
                   <select class="form-control custom-select selectric @error('category_course') is-invalid @enderror" name="category_course">
-                    <option value="{{ $course->category_id }}" selected>Prev. Category: {{ $course->category->category_name }}</option>
+                    <option disabled value="{{ $course->category_id }}" selected>Prev. Category: {{ $course->category->category_name }}</option>
                     @foreach ($category as $cat)
                       <option value="{{ $cat->id }}">{{ $cat->category_name }}</option>
                     @endforeach
@@ -107,7 +114,6 @@
                   <select class="form-control selectric" name="status">
                     <option value="{{ $course->status }}" selected>Prev. Status: {{ $course->status }}</option>
                     <option value="PUBLISH">Publish</option>
-                    <option value="DRAFT">Draft</option>
                     <option value="PENDING">Pending</option>
                   </select>
                 </div>

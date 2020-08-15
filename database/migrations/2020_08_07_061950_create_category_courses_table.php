@@ -15,7 +15,7 @@ class CreateCategoryCoursesTable extends Migration
     {
         Schema::create('category_courses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('category_name')->unique();
+            $table->string('category_name', 191)->unique();
             $table->string('slug');
             $table->timestamps();
         });
