@@ -17,6 +17,8 @@ Route::prefix('admin')
                 Route::resource('lesson', 'LessonController');
             });
         Route::get('/', 'DashboardController@index')->name('dashboard');
+        Route::resource('company', 'Company\CompanyController');
+        Route::resource('package', 'Company\PackageController');
         Route::resource('company', 'CompanyController');
         Route::resource('job', 'JobController');
         Route::resource('blog', 'BlogController');

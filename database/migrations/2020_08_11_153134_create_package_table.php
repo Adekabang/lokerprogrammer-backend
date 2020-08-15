@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoryCoursesTable extends Migration
+class CreatePackageTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateCategoryCoursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_courses', function (Blueprint $table) {
+        Schema::create('package', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('category_name', 191)->unique();
-            $table->string('slug');
+            $table->string('package_name');
+            $table->integer('price_package');
+            $table->string('package_expired')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateCategoryCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_courses');
+        Schema::dropIfExists('package');
     }
 }
