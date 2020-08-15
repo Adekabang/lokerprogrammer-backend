@@ -24,7 +24,7 @@
             <div class="card-header d-flex justify-content-between">
               <h4>Category List</h4>
               <div>
-                <a id="modal-create" href="{{ route('category.index') }}" class="btn btn-primary">Add Category</a>
+                <a id="launch-modal-create" href="#" class="btn btn-primary">Add Category</a>
               </div>
             </div>
             <div class="card-body">
