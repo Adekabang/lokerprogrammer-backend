@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Course\CategoryCourseRequest;
 use App\Models\Course\CategoryCourse;
 use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
 {
@@ -16,14 +17,32 @@ class CategoryController extends Controller
         return \view('pages.admin.course.category.index', \compact('categories'));
     }
 
+    public function create()
+    {
+        $model = new CategoryCourse();
+        return view('pages.admin.course.category.form', compact('model'));
+    }
+
     // Processing Modal Add Category
     public function store(CategoryCourseRequest $request)
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request->category_name);
-        CategoryCourse::create($data);
+        $model = CategoryCourse::create($data);
 
-        return redirect('admin/category')->withToastSuccess('Category has created!');
+        return $model;
+    }
+
+    public function show($id)
+    {
+        $model = CategoryCourse::findOrFail($id);
+        return view('pages.admin.course.category.show', compact('model'));
+    }
+
+    public function edit($id)
+    {
+        $model = CategoryCourse::findOrFail($id);
+        return view('pages.admin.course.category.form', compact('model'));
     }
 
     // Processing Modal Edit Category
@@ -33,8 +52,6 @@ class CategoryController extends Controller
         $data['slug'] = Str::slug($request->category_name);
         $item = CategoryCourse::findOrFail($id);
         $item->update($data);
-
-        return redirect('admin/category')->withToastSuccess('Category has updated!');
     }
 
     // Processing Delete Category
@@ -42,7 +59,22 @@ class CategoryController extends Controller
     {
         $category = CategoryCourse::findOrFail($id);
         $category->delete();
+    }
 
-        return redirect('admin/category')->withToastSuccess('Category has deleted!');
+    public function dataTable()
+    {
+        $model = CategoryCourse::query()->latest();
+        return DataTables::of($model)
+            ->addColumn('Action', function ($model) {
+                return view('layouts._action', [
+                    'model' => $model,
+                    'url_show' => route('category.show', $model->id),
+                    'url_edit' => route('category.edit', $model->id),
+                    'url_destroy' => route('category.destroy', $model->id)
+                ]);
+            })
+            ->addIndexColumn()
+            ->rawColumns(['Action'])
+            ->make(true);
     }
 }

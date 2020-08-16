@@ -8,7 +8,7 @@ class CoursePackageFeature extends Model
 {
     protected $fillable = ['course_packages_id', 'feature_name'];
 
-    public function coursePackge()
+    public function coursePackage()
     {
         return $this->hasOne(CoursePackage::class, 'id', 'course_packages_id');
     }

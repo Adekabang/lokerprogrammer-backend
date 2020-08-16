@@ -20,21 +20,21 @@ Route::prefix('admin')
         Route::get('/course/show', 'Course\CourseController@showAll')->name('show-course');
         Route::resource('blog', 'Blog\BlogController');
         Route::resource('category_Blog', 'Blog\BlogCategorieController');
-        
-    });
+
         Route::resource('company', 'Company\CompanyController');
         Route::resource('package', 'Company\PackageController');
-        Route::resource('company', 'CompanyController');
-        Route::resource('job', 'JobController');
-        Route::resource('blog', 'BlogController');
 
         //Category Job
-        Route::resource('category-job','JobCategoryController');
-        Route::resource('joblist','JobListController');
-        Route::post('category-job/getCategory','JobListController@getCategory')->name('category-job.getCategory');        
-
+        Route::resource('category-job', 'JobCategoryController');
+        Route::resource('joblist', 'JobListController');
+        Route::post('category-job/getCategory', 'JobListController@getCategory')->name('category-job.getCategory');
     });
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('/kelas', 'KelasController');
+
+// Datatables
+Route::get('/table/category', 'Admin\Course\CategoryController@dataTable')->name('table.category');
+Route::get('/table/coursePackage', 'Admin\Course\CoursePackageController@dataTable')->name('table.coursePackage');
+Route::get('/table/coursePackageFeature', 'Admin\Course\CoursePackageFeatureController@dataTable')->name('table.coursePackageFeature');

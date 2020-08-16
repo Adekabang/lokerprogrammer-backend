@@ -32,7 +32,7 @@
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Course Name</label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="text" class="form-control @error('course_name') is-invalid @enderror" name="course_name" value="{{ old('course_name') }}" required>
+                  <input type="text" class="form-control @error('course_name') is-invalid @enderror" name="course_name" value="{{ old('course_name') }}" required placeholder="Laravel...">
                   @error('course_name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -43,7 +43,7 @@
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Course Author</label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="text" class="form-control @error('course_author') is-invalid @enderror" name="course_author" value="{{ old('course_author') }}" required>
+                  <input type="text" class="form-control @error('course_author') is-invalid @enderror" name="course_author" value="{{ old('course_author') }}" required placeholder="Parsinta">
                   @error('course_author')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
