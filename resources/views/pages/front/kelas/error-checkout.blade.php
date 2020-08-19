@@ -1,0 +1,2 @@
+{{ 'Huftt!' }}
+{{ 'Pembayaran anda gagal!' }}

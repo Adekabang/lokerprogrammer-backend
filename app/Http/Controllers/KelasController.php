@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course\CoursePackage;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -13,7 +14,8 @@ class KelasController extends Controller
      */
     public function index()
     {
-        return \view('pages.front.kelas.index');
+        $course_packages = CoursePackage::with('features')->get();
+        return \view('pages.front.kelas.index', \compact('course_packages'));
     }
 
     /**

@@ -8,8 +8,9 @@ use Illuminate\Support\Str;
 
 $factory->define(CategoryCourse::class, function (Faker $faker) {
     $category_name = $faker->safeColorName;
+    $slug = Str::slug($category_name);
     return [
         'category_name' => $category_name,
-        'slug' => Str::slug($category_name)
+        'slug' => $slug
     ];
 });

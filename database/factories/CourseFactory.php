@@ -8,10 +8,11 @@ use Illuminate\Support\Str;
 
 $factory->define(Course::class, function (Faker $faker) {
     $course_name = $faker->companySuffix;
+    $slug = Str::slug($course_name);
     return [
         'category_id' => factory(CategoryCourse::class),
         'course_name' => $course_name,
-        'slug' => Str::slug($course_name),
+        'slug' => $slug,
         'course_author' => $faker->name,
         'label' => $faker->domainWord,
         'thumbnail' => 'assets/img/course/thumbnail.jpg',

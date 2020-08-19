@@ -38,3 +38,17 @@ Route::resource('/kelas', 'KelasController');
 Route::get('/table/category', 'Admin\Course\CategoryController@dataTable')->name('table.category');
 Route::get('/table/coursePackage', 'Admin\Course\CoursePackageController@dataTable')->name('table.coursePackage');
 Route::get('/table/coursePackageFeature', 'Admin\Course\CoursePackageFeatureController@dataTable')->name('table.coursePackageFeature');
+
+// Midtrans
+Route::namespace('CheckoutCourse')->group(function () {
+    Route::post('/checkout/{id}', 'CheckoutController@process')
+        ->name('checkout_process')
+        ->middleware(['auth', 'verified']);
+    Route::get('/checkout/confirm/{id}', 'CheckoutController@success')
+        ->name('checkout_success')
+        ->middleware(['auth', 'verified']);
+    Route::post('midtrans/callback', 'MidtransController@notificationHandler');
+    Route::get('midtrans/finish', 'MidtransController@finishRedirect');
+    Route::get('midtrans/unfinish', 'MidtransController@unfinishRedirect');
+    Route::get('midtrans/error', 'MidtransController@errorRedirect');
+});

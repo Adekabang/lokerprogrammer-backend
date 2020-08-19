@@ -1,0 +1,1 @@
+{{ 'Pembayaran belum selesai, mohon selesaikan!' }}
