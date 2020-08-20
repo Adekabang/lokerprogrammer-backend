@@ -24,12 +24,12 @@
                 <div class="card-header d-flex justify-content-between">
                   <h4>Category List</h4>
                   <div>
-                    <a href="javascript:void(0)" id="createNewCategory" class="btn btn-primary">Add Category</a>
+                    <a href="{{ route('category_Blog.create') }}" class="modal-show btn btn-primary">Add Category</a>
                   </div>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table table-bordered data-table" id="table">
+                    <table class="table table-bordered data-table" id="datatable">
                       <thead>
                         <tr>
                           <th>No</th>
@@ -51,88 +51,27 @@
       </section>
     </div>
 
-   @include('pages.admin.blog.category_blog.modalCategory')
+   {{-- @include('pages.admin.blog.category_blog.modalCategory') --}}
 
+   @push('sweetalert-script')
+  <script src="{{ url('backend') }}/node_modules/sweetalert/dist/sweetalert.min.js"></script>
+  @endpush
     @push('addon-script')
       <script type="text/javascript">
-        $(function () {
-              $.ajaxSetup({
-                  headers: {
-                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                  }
-            });
-            var table = $('.data-table').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "{{ route('category_Blog.index') }}",
-                columns: [
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    {data: 'category_name', name: 'category_name'},
-                    {data: 'slug', name: 'slug'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false},
-                ]
-            });
-            $('#createNewCategory').click(function () {
-                $('#saveBtn').val("create-Category");
-                $('#id').val('');
-                $('#category_blogForm').trigger("reset");
-                $('#modelHeading').html("Create New Category");
-                $('#ajaxModel').modal('show');
-            });
-            $('body').on('click', '.editCategory', function () {
-              var category_id = $(this).data('id');
-              $.get("{{ route('category_Blog.index') }}" +'/' + category_id +'/edit', function (data) {
-                  $('#modelHeading').html("Edit Category");
-                  $('#saveBtn').val("edit-category");
-                  $('#ajaxModel').modal('show');
-                  $('#id').val(data.id);
-                  $('#category_name').val(data.category_name);
-                  $('#slug').val(data.slug);
-              })
-          });
-            $('#saveBtn').click(function (e) {
-                e.preventDefault();
-                $(this).html('Save');
-            
-                $.ajax({
-                  data: $('#category_blogForm').serialize(),
-                  url: "{{ route('category_Blog.store') }}",
-                  type: "POST",
-                  dataType: 'json',
-                  success: function (data) {
-            
-                      $('#category_blogForm').trigger("reset");
-                      $('#ajaxModel').modal('hide');
-                      table.draw();
-                
-                  },
-                  error: function (data) {
-                      console.log('Error:', data);
-                      $('#saveBtn').html('Save Changes');
-                  }
-              });
-            });
-            
-            $('body').on('click', '.deleteCategory', function () {
-              
-              confirm("Are You sure want to delete !");
-                var category_id = $(this).data("id");
-              
-              
-                $.ajax({
-                    type: "DELETE",
-                    url: "{{ route('category_Blog.store') }}"+'/'+category_id,
-                    success: function (data) {
-                        table.draw();
-                    },
-                    error: function (data) {
-                        console.log('Error:', data);
-                    }
-                });
-            });
-            
-          });
+          $('#datatable').DataTable({
+            responsive: true,
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('table.category_blog') }}",
+            columns: [
+                {data: 'DT_RowIndex', name: 'id'},
+                {data: 'category_name', name: 'category_name'},
+                {data: 'slug', name: 'slug'},
+                {data: 'Action', name: 'Action'}
+            ]
+        });
       </script>
+       <script src="{{ url('js/app.js') }}"></script>
     @endpush
 @endsection
 

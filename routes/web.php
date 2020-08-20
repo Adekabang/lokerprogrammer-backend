@@ -18,8 +18,10 @@ Route::prefix('admin')
             });
         Route::get('/', 'DashboardController@index')->name('dashboard');
         Route::get('/course/show', 'Course\CourseController@showAll')->name('show-course');
+        // blogs
         Route::resource('blog', 'Blog\BlogController');
         Route::resource('category_Blog', 'Blog\BlogCategorieController');
+        Route::get('/table/category_blog', 'Blog\BlogCategorieController@dataTable')->name('table.category_blog');
 
         Route::resource('company', 'Company\CompanyController');
         Route::resource('package', 'Company\PackageController');

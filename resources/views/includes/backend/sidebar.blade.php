@@ -53,8 +53,8 @@
           <ul class="dropdown-menu">
             {{-- <li class="{{ (request()->segment(2) == 'BlogCategory') ? 'active' : ''}}"><a class="nav-link" href="{{ route('blogCategories.index') }}">Course Categories </a></li> --}}
             
-            <li class="{{ (request()->segment(2) == 'category_Blog') ? 'active' : ''}}""><a class="nav-link" href="{{ route('category_Blog.index') }}">Category Blog </a></li>
-            <li class="{{ (request()->segment(2) == 'blog') ? 'active' : ''}}""><a class="nav-link" href="{{ route('blog.index') }}">Blog List </a></li>
+            <li class="{{ (request()->segment(2) == 'category_Blog') ? 'active' : ''}}"><a class="nav-link" href="{{ route('category_Blog.index') }}">Category Blog </a></li>
+            <li class="{{ (request()->segment(2) == 'blog') ? 'active' : ''}}"><a class="nav-link" href="{{ route('blog.index') }}">Blog List </a></li>
           </ul>
         </li>
       </ul>

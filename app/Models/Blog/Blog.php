@@ -9,9 +9,7 @@ class Blog extends Model
     protected $fillable =['judul_blog','slug_blog_id','category_id','content_blog','image'];
 
     public function category(){
-        return $this->belongsTo(BlogCategory::class);
+        return $this->belongsTo(Category_blog::class);
     }
-    public function slug(){
-        return $this->belongsTo(BlogCategory::class);
-    }
+    
 }

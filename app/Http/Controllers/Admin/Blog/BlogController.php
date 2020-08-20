@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Blog;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog\Blog;
-use App\Models\Blog\BlogCategory;
+use App\Models\Blog\Category_blog;
 use Illuminate\Support\Str;
 use Yajra\Datatables\Datatables;
 
@@ -53,7 +53,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $categories=BlogCategory::all();
+        $categories=Category_blog::all();
         return view('pages.admin.blog.blog_list.create',compact('categories'));
     }
 
@@ -115,7 +115,7 @@ class BlogController extends Controller
     public function edit($id)
     {
         $blog=Blog::findOrFail($id);
-        $categories=BlogCategory::all();
+        $categories=Category_blog::all();
         return view('pages.admin.blog.blog_list.edit',compact('blog','categories'));
     }
 
@@ -128,6 +128,13 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'category_id'   => 'required',
+            'judul_blog'    => 'required',
+            'content_blog'  => 'required',
+
+        ]);
+        // return $request;
         $blog = Blog::findOrFail($id);
 
         if($request->image !=''){
