@@ -4,7 +4,7 @@ namespace App\Models\Blog;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category_blog extends Model
+class CategoryBlog extends Model
 {
     protected $table='categori_blogs';
     protected $fillable =['category_name','slug'];
