@@ -37,10 +37,10 @@
                     <tr>
                       <th class="text-center">No</th>
                       <th>Nama Company</th>
-                      <th>Kategori</th>
-                      <th>Harga</th>
-                      <th>Mentor Company</th>
-                      <th class="text-center">Thumbnail</th>
+                      <th>Location</th>
+                      <th>Contact</th>
+                      <th>Status</th>
+                      <th class="text-center">Logo</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -52,14 +52,10 @@
                     <tr>
                       <td>{{ $i++ }}</td>
                       <td>{{ $company->company_name }}</td>
-                      <td>
-                        {{ $company->category ? $company->category->category_name : '' }}
-                      </td>
-                      <td>@currency($company->price)</td>
-                      <td class="align-middle text-center">
-                        <img alt="image" src="{{ url('backend') }}/assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="{{ $company->company_author }}">
-                      </td>
-                      <td class="text-center" style="width: 200px;"><img src="{{ Storage::url($company->thumbnail) }}" class="w-50"></td>
+                      <td>{{ $company->location }}</td>
+                      <td>{{ $company->contact }}</td>
+                      <td>{{ $company->status }}</td>
+                      <td class="text-center" style="width: 200px;"><img src="{{ Storage::url($company->logo) }}" class="w-50"></td>
                       <td>
                         <a href="{{ route('company.edit', $company->id) }}" class="btn btn-sm btn-round btn-icon icon-left btn-success"><i class="far fa-fw fa-edit"></i> Edit</a>
                         <button type="button" onclick="deleteData({{ $company->id }})" class="btn btn-sm btn-round btn-icon icon-left btn-danger"><i class="fas fa-fw fa-trash-alt"></i> Delete</a>

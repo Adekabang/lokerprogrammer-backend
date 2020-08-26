@@ -16,7 +16,7 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('category_id');
-            $table->string('company_name');
+            $table->string('company_name')->unique();
             $table->string('slug');
             $table->string('logo');
             $table->string('location');

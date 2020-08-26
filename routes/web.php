@@ -29,7 +29,7 @@ Route::prefix('admin')
 
         Route::get('/', 'DashboardController@index')->name('dashboard');
         Route::get('/course/show', 'Course\CourseController@showAll')->name('show-course');
-        Route::get('/company/show', 'Copany\CompanyController@showAll')->name('show-company');
+        Route::get('/company/show', 'Company\CompanyController@showAll')->name('show-company');
 
         // blogs
         Route::resource('blog', 'Blog\BlogController');

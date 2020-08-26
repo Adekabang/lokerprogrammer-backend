@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
 $factory->define(CategoryCompany::class, function (Faker $faker) {
-    $category_name = $faker->unique()->safeColorName;
+    $category_name = $faker->unique(true)->domainName;
     $slug = Str::slug($category_name);
     return [
         'category_name' => $category_name,

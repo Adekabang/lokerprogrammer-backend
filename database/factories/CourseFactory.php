@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
 $factory->define(Course::class, function (Faker $faker) {
-    $course_name = $faker->unique()->companySuffix;
+    $course_name = $faker->unique()->monthName;
     return [
         'category_id' => factory(CategoryCourse::class),
         'course_name' => $course_name,

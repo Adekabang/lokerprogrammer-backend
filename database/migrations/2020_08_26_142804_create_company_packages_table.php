@@ -15,7 +15,7 @@ class CreateCompanyPackagesTable extends Migration
     {
         Schema::create('company_packages', function (Blueprint $table) {
             $table->id();
-            $table->string('package_name');
+            $table->string('package_name')->unique();
             $table->string('price');
             $table->timestamps();
         });

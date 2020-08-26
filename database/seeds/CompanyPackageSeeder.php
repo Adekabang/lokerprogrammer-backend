@@ -15,15 +15,15 @@ class CompanyPackageSeeder extends Seeder
         DB::table('company_packages')->insert([
             [
                 'package_name' => 'Silver',
-                'price' => 125000,
+                'price' => 100000,
             ],
             [
                 'package_name' => 'Gold',
-                'price' => 250000,
+                'price' => 200000,
             ],
             [
                 'package_name' => 'Platinum',
-                'price' => 450000,
+                'price' => 300000,
             ]
         ]);
     }
