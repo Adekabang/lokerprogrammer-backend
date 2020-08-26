@@ -12,9 +12,10 @@
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
               <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item has-icon text-danger">
-                <i class="fas fa-sign-out-alt"></i> Logout
-              </a>
+              <form class="dropdown-item form-inline" method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button class="has-icon text-danger btn btn-block my-2" type="submit"><i class="fas fa-fw fa-sign-out-alt mx-2"></i> Logout</button>
+              </form>
             </div>
           </li>
         </ul>
