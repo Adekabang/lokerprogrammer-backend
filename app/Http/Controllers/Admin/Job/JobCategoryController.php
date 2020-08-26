@@ -4,9 +4,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\JobCategory;
+use App\Models\Job\JobCategory;
 use Illuminate\Http\Request;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 
 class JobCategoryController extends Controller
 {
@@ -20,17 +20,17 @@ class JobCategoryController extends Controller
         if ($request->ajax()) {
             $data = JobCategory::latest()->get();
             return Datatables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editItem">Edit</a>';
-   
-                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteItem">Delete</a>';
-                            return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editItem">Edit</a>';
+
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteItem">Delete</a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
-      
+
         return view('pages.admin.category-job.index');
     }
 
@@ -42,10 +42,12 @@ class JobCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        JobCategory::updateOrCreate(['id' => $request->Item_id],
-        ['name' => $request->name]);        
+        JobCategory::updateOrCreate(
+            ['id' => $request->Item_id],
+            ['name' => $request->name]
+        );
 
-        return response()->json(['success'=>'Data saved successfully.']);
+        return response()->json(['success' => 'Data saved successfully.']);
     }
 
     /**
@@ -69,7 +71,7 @@ class JobCategoryController extends Controller
     public function destroy($id)
     {
         JobCategory::find($id)->delete();
-     
-        return response()->json(['success'=>'Data deleted successfully.']);
+
+        return response()->json(['success' => 'Data deleted successfully.']);
     }
 }

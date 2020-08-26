@@ -24,7 +24,7 @@
                 <div class="card-header d-flex justify-content-between">
                   <h4>Category List</h4>
                   <div>
-                    <a href="{{ route('category_Blog.create') }}" class="modal-show btn btn-primary">Add Category</a>
+                    <a href="{{ route('category-blog.create') }}" class="modal-show btn btn-primary">Add Category</a>
                   </div>
                 </div>
                 <div class="card-body">

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Course || Package
+    Company || Package Feature
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
     <div class="section-header">
       <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-        <div class="breadcrumb-item"><a href="#">Package</a></div>
+        <div class="breadcrumb-item"><a href="#">Package Feature</a></div>
         <div class="breadcrumb-item">List</div>
       </div>
     </div>
@@ -22,9 +22,9 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header d-flex justify-content-between">
-              <h4>Package List</h4>
+              <h4>Package Feature List</h4>
               <div>
-                <a href="{{ route('coursePackage.create') }}" class="modal-show btn btn-primary">Add Package</a>
+                <a href="{{ route('companyPackageFeature.create') }}" class="modal-show btn btn-primary">Add Feature</a>
               </div>
             </div>
             <div class="card-body">
@@ -34,7 +34,7 @@
                     <tr>
                       <th>No</th>
                       <th>Package Name</th>
-                      <th>Package Price</th>
+                      <th>Package Features Name</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -51,6 +51,7 @@
   </section>
 </div>
 @endsection
+
 @push('sweetalert-script')
   <script src="{{ url('backend') }}/node_modules/sweetalert/dist/sweetalert.min.js"></script>
 @endpush
@@ -60,11 +61,11 @@
             responsive: true,
             processing: true,
             serverSide: true,
-            ajax: "{{ route('table.coursePackage') }}",
+            ajax: "{{ route('table.companyPackageFeature') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'id'},
-                {data: 'package_name', name: 'package_name'},
-                {data: 'price', render: $.fn.dataTable.render.number( '.', ',', 2, 'Rp ' ), name: 'price'},
+                {data: 'company_package.package_name', name: 'company_package.package_name'},
+                {data: 'feature_name', name: 'feature_name'},
                 {data: 'Action', name: 'Action'}
             ]
         });

@@ -3,8 +3,9 @@
 namespace App\Http\Requests\Admin\Company;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class CompanyRequest extends FormRequest
+class CompanyPackageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +25,11 @@ class CompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_company' => 'required|exists:category_companies,id',
-            'company_name' => 'required',
-            'company_author' => 'required',
-            'label' => 'required|string|in:FREE,PREMIUM',
-            'category_company' => 'required',
-            'description' => 'required',
-            'status' => 'required|string|in:PUBLISH,PENDING'
+            'package_name' => [
+                'required',
+                Rule::unique('company_packages', 'package_name')->ignore($this->companyPackage)
+            ],
+            'price' => 'required|integer'
         ];
     }
 }

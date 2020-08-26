@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Job;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +10,6 @@ class JobList extends Model
 
     public function job_categories()
     {
-        return $this->hasMany(JobCategory::class, 'category_id','id');
+        return $this->hasMany(JobCategory::class, 'category_id', 'id');
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Course || Package
+    Company || Package
 @endsection
 
 @section('content')
@@ -24,7 +24,7 @@
             <div class="card-header d-flex justify-content-between">
               <h4>Package List</h4>
               <div>
-                <a href="{{ route('coursePackage.create') }}" class="modal-show btn btn-primary">Add Package</a>
+                <a href="{{ route('companyPackage.create') }}" class="modal-show btn btn-primary">Add Package</a>
               </div>
             </div>
             <div class="card-body">
@@ -60,7 +60,7 @@
             responsive: true,
             processing: true,
             serverSide: true,
-            ajax: "{{ route('table.coursePackage') }}",
+            ajax: "{{ route('table.companyPackage') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'id'},
                 {data: 'package_name', name: 'package_name'},

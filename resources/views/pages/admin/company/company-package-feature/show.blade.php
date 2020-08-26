@@ -2,11 +2,11 @@
   <tr>
       <th>ID</th>
       <th>Package Name</th>
-      <th>Price</th>
+      <th>Package Feature</th>
   </tr>
   <tr>
       <td>{{ $model->id }}</td>
-      <td>{{ $model->package_name }}</td>
-      <td>@currency($model->price)</td>
+      <td>{{ $model->companyPackage->package_name }}</td>
+      <td>{{ $model->feature_name }}</td>
   </tr>
 </table>

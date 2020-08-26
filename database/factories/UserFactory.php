@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
-    $name = $faker->userName;
+    $name = $faker->unique()->userName;
     return [
         'name' => $name,
         'username' => Str::snake($name),

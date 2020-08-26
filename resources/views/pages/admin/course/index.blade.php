@@ -38,7 +38,7 @@
                       <th class="text-center">No</th>
                       <th>Nama Course</th>
                       <th>Kategori</th>
-                      <th>Harga</th>
+                      <th>Status</th>
                       <th>Mentor Course</th>
                       <th class="text-center">Thumbnail</th>
                       <th>Action</th>
@@ -55,7 +55,7 @@
                       <td>
                         {{ $course->category ? $course->category->category_name : '' }}
                       </td>
-                      <td>@currency($course->price)</td>
+                      <td>{{ $course->status }}</td>
                       <td class="align-middle text-center">
                         <img alt="image" src="{{ url('backend') }}/assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="{{ $course->course_author }}">
                       </td>
