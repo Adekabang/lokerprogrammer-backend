@@ -10,6 +10,6 @@ class JobList extends Model
 
     public function job_categories()
     {
-        return $this->hasMany(JobCategory::class, 'category_id', 'id');
+        return $this->belongsTo(JobCategory::class, 'category_id', 'id');
     }
 }

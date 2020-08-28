@@ -137,9 +137,10 @@
    $('body').on('click', '.deleteItem', function () {
      
      var Item_id = $(this).data("id");
-     confirm("Are You sure want to delete !");
+    $crm = confirm("Are You sure want to delete !");
    
-     $.ajax({
+    if ($crm) {
+      $.ajax({
          type: "DELETE",
          url: "{{ route('category-job.store') }}"+'/'+Item_id,
          success: function (data) {
@@ -148,7 +149,10 @@
          error: function (data) {
              console.log('Error:', data);
          }
-     });
+     }); 
+    } else {
+      console.log('tidak jadi menghapus');
+    }
  });  
     });
   </script>

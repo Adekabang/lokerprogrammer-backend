@@ -3,9 +3,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Job\JobCategory;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Job\JobCategory;
+use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 
 class JobCategoryController extends Controller
@@ -44,7 +45,10 @@ class JobCategoryController extends Controller
     {
         JobCategory::updateOrCreate(
             ['id' => $request->Item_id],
-            ['name' => $request->name]
+            [
+                'name' => $request->name,
+                'slug' => Str::slug($request->name)
+            ]
         );
 
         return response()->json(['success' => 'Data saved successfully.']);
