@@ -32,7 +32,12 @@
                     <div class="form-group row">
                       <label for="inputPassword" class="col-sm-2 col-form-label">Judul Blog</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" name="judul_blog" value="{{ old('judul_blog') }}" id="judulBlog" placeholder="masukan judul blog" required>
+                        <input type="text" class="form-control @error('judul_blog') is-invalid @enderror" name="judul_blog" value="{{ old('judul_blog') }}" id="judulBlog" placeholder="masukan judul blog" required>
+                        @error('judul_blog')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                        @enderror
                       </div>
                     </div>
 
@@ -40,11 +45,16 @@
                         <label for="inputPassword" class="col-sm-2 col-form-label">Category Blog</label>
                         <div class="col-sm-10">
                             <select class="form-control custom-select selectric @error('category_id') is-invalid @enderror" name="category_id" required>
-                                <option value="" selected disabled>~ Choose Category ~</option>
+                                <option value="{{ old('category_id') }}" selected disabled>~ Choose Category ~</option>
                                 @foreach ($categories as $cat)
                                   <option value="{{ $cat->id }}">{{ $cat->category_name }}</option>
                                 @endforeach
                               </select>
+                              @error('category_id')
+                              <div class="invalid-feedback">
+                                  {{$message}}
+                              </div>
+                              @enderror
                         </div>
                     </div>
 
@@ -52,13 +62,18 @@
                         <label for="inputPassword" class="col-sm-2 col-form-label">upload image</label>
                         <div class="col-sm-10">
                             <input type="file" class="form-control-file" placeholder="add name category" name="image" value="{{ old('image') }}"> 
-                        </div>
+                          </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="inputPassword" class="col-sm-2 col-form-label">Content</label>
                         <div class="col-sm-10">
                             <textarea class="summernote-simple" name="content_blog"></textarea>
+                            @error('content_blog')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                        @enderror
                         </div>
                     </div>
 

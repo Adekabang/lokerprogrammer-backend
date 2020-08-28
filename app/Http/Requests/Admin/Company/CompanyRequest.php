@@ -24,11 +24,13 @@ class CompanyRequest extends FormRequest
     public function rules()
     {
         return [
+            'category_company' => 'required|exists:category_companies,id',
             'company_name' => 'required',
-            'location' => 'required',
-            'contact' => 'required',
+            'company_author' => 'required',
+            'label' => 'required|string|in:FREE,PREMIUM',
+            'category_company' => 'required',
             'description' => 'required',
-            'expired_date' => 'required'
+            'status' => 'required|string|in:PUBLISH,PENDING'
         ];
     }
 }

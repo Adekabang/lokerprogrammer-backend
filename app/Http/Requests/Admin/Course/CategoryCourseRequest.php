@@ -27,7 +27,7 @@ class CategoryCourseRequest extends FormRequest
         return [
             'category_name' => [
                 'required',
-                Rule::unique('category_courses', 'category_name')->ignore($this->category)
+                Rule::unique('category_courses', 'category_name')->ignore($this->categoryCourse)
             ]
         ];
     }

@@ -103,24 +103,21 @@
       
       $('body').on('click', '.deleteItem', function () {
               
-              confirm("Are You sure want to delete !");
-                var category_id = $(this).data("id");
-              
-              
-                $.ajax({
-                    type: "DELETE",
-                    url: "{{ route('blog.store') }}"+'/'+category_id,
-                    success: function (data) {
-                        table.draw();
-                    },
-                    error: function (data) {
-                        console.log('Error:', data);
-                    }
-                });
-            });
-            
-      
-      
+        if(confirm("Are You sure want to delete !")){
+          var category_id = $(this).data("id");
+          $.ajax({
+              type: "DELETE",
+              url: "{{ route('blog.store') }}"+'/'+category_id,
+              success: function (data) {
+                  table.draw();
+              },
+              error: function (data) {
+                  console.log('Error:', data);
+              }
+          });
+          
+        }
+      });
     });
 </script>
 @endpush

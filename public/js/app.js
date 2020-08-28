@@ -27,6 +27,7 @@ $('#modal-btn-save').click(function (event) {
       url = form.attr('action'),
       method = $('input[name=_method]').val() == undefined ? 'POST' : 'PUT';
   form.find('.help-block').remove();
+  form.find('.has-error').remove();
   form.find('.form-group').removeClass('is-invalid');
 
   $.ajax({

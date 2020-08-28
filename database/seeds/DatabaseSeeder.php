@@ -1,7 +1,11 @@
 <?php
 
+use App\Models\Blog\{Blog, CategoryBlog};
 use Illuminate\Database\Seeder;
-use App\Models\Course\{Course, CategoryCourse, CourseLesson};
+use App\Models\Course\{Course, CategoryCourse};
+use App\Models\Company\{Company, CategoryCompany};
+use App\Models\Job\JobCategory;
+use App\Models\Job\JobList;
 use App\Models\User;
 
 class DatabaseSeeder extends Seeder
@@ -16,8 +20,16 @@ class DatabaseSeeder extends Seeder
         $this->call(LessonSeeder::class);
         factory(User::class, 3)->create();
         factory(Course::class, 3)->create();
+        factory(Blog::class, 3)->create();
+        factory(Company::class, 3)->create();
+        factory(CategoryBlog::class)->create();
         factory(CategoryCourse::class)->create();
+        factory(CategoryCompany::class)->create();
+        factory(JobCategory::class,5)->create();
+        factory(JobList::class, 10)->create();
         $this->call(CoursePackageSeeder::class);
         $this->call(CoursePackageFeatureSeeder::class);
+        $this->call(CompanyPackageSeeder::class);
+        $this->call(CompanyPackageFeatureSeeder::class);
     }
 }

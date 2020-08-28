@@ -71,19 +71,19 @@
                       <div class="form-group">
                         <label for="requirement" class="col-sm-2 control-label">Requirement</label>
                         <div class="col-sm-12">
-                            <textarea class="form-control" name="requirement" id="requirement"></textarea>
+                            <textarea class="form-control summernote-simple" name="requirement" id="requirement"></textarea>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="required_skill" class="col-sm-2 control-label">Required Skill</label>
                         <div class="col-sm-12">
-                            <textarea class="form-control" name="required_skill" id="required_skill"></textarea>
+                            <textarea class="form-control summernote-simple" name="required_skill" id="required_skill"></textarea>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="description" class="col-sm-2 control-label">Description</label>
                         <div class="col-sm-12">
-                            <textarea class="form-control" name="description" id="description"></textarea>
+                            <textarea class="form-control summernote-simple" name="description" id="description"></textarea>
                         </div>
                       </div>
                       <div class="col-sm-offset-2 col-sm-10">
@@ -112,12 +112,12 @@
           serverSide: true,
           ajax: "{{ route('joblist.index') }}",
           columns: [
-              {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+              {data: 'id', name: 'id'},
               {data: 'name', name: 'name'},
-              {data: 'categories.category_name', name: 'category_name'},
-              {data: 'requirement', name: 'requirement'},
-              {data: 'required_skill', name: 'required_skill'},
-              {data: 'description', name: 'description'},
+              {data: 'job_categories.name', name: 'job_categories.name'},
+              {data: 'requirement_job', name: 'requirement'},
+              {data: 'required_skill_job', name: 'required_skill'},
+              {data: 'description_job', name: 'description'},
               {data: 'action', name: 'action', orderable: false, searchable: false},
           ]
       });
@@ -147,6 +147,9 @@
         $('#saveBtn').val("create-Item");
         $('#Item_id').val('');
         $('#ItemForm').trigger("reset");
+        $('#description').summernote('code','');
+        $('#requirement').summernote('code','');
+        $('#required_skill').summernote('code','');
         $('#modelHeading').html("Create New Item");    
         $('#ajaxModel').modal('show');
       });
@@ -179,10 +182,15 @@
     });
 
     $('body').on('click', '.editItem', function () {
+      console.log('berhasil');
       var Item_id = $(this).data('id');
       $.get("{{ route('joblist.index') }}" +'/' + Item_id +'/edit', function (data) {
           $('#modelHeading').html("Edit Item");
           $('#saveBtn').val("edit-user");
+          $('#description').summernote('code',data.description);
+          $('#requirement').summernote('code',data.requirement);
+          $('#required_skill').summernote('code',data.required_skill);
+          $('#category_id').val(data.category_id);
           $('#ajaxModel').modal('show');
           $('#Item_id').val(data.id);
           $('#name').val(data.name);
@@ -192,8 +200,9 @@
    $('body').on('click', '.deleteItem', function () {
      
      var Item_id = $(this).data("id");
-     confirm("Are You sure want to delete !");
+     $crm = confirm("Are You sure want to delete !");
    
+    if ($crm === true) {     
      $.ajax({
          type: "DELETE",
          url: "{{ route('joblist.store') }}"+'/'+Item_id,
@@ -204,6 +213,9 @@
              console.log('Error:', data);
          }
      });
+    }else{
+      console.log('tidak jadi menghapus');
+    }
  });  
     });
   </script>
