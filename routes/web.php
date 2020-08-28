@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')
     ->namespace('Admin')
-    // ->middleware(['auth', 'verified', 'admin'])
+    ->middleware(['auth', 'verified']) //'admin'])
     ->group(function () {
         // Special Routing for Courses
         Route::namespace('course')
@@ -51,7 +51,23 @@ Route::get('/table/courseCategory', 'Admin\Course\CategoryController@dataTable')
 Route::get('/table/coursePackage', 'Admin\Course\CoursePackageController@dataTable')->name('table.coursePackage');
 Route::get('/table/coursePackageFeature', 'Admin\Course\CoursePackageFeatureController@dataTable')->name('table.coursePackageFeature');
 
+<<<<<<< HEAD
+// Midtrans
+Route::namespace('CheckoutCourse')->group(function () {
+    Route::post('/checkout/{id}', 'CheckoutController@process')
+        ->name('checkout_process')
+        ->middleware(['auth', 'verified']);
+    Route::get('/checkout/confirm/{id}', 'CheckoutController@success')
+        ->name('checkout_success')
+        ->middleware(['auth', 'verified']);
+    Route::post('midtrans/callback', 'MidtransController@notificationHandler');
+    Route::get('midtrans/finish', 'MidtransController@finishRedirect');
+    Route::get('midtrans/unfinish', 'MidtransController@unfinishRedirect');
+    Route::get('midtrans/error', 'MidtransController@errorRedirect');
+});
+=======
 // Datatables Company
 Route::get('/table/companyCategory', 'Admin\Company\CategoryController@dataTable')->name('table.companyCategory');
 Route::get('/table/companyPackage', 'Admin\Company\CompanyPackageController@dataTable')->name('table.companyPackage');
 Route::get('/table/companyPackageFeature', 'Admin\Company\CompanyPackageFeatureController@dataTable')->name('table.companyPackageFeature');
+>>>>>>> master

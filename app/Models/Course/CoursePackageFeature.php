@@ -10,6 +10,6 @@ class CoursePackageFeature extends Model
 
     public function coursePackage()
     {
-        return $this->hasOne(CoursePackage::class, 'id', 'course_packages_id');
+        return $this->hasMany(CoursePackage::class, 'id', 'course_packages_id');
     }
 }

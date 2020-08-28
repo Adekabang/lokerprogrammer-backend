@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCourseTransactionDetailsTable extends Migration
+class CreateCourseMembershipsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateCourseTransactionDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_transaction_details', function (Blueprint $table) {
+        Schema::create('course_memberships', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('course_transactions_id')->constrained();
-            $table->string('username');
+            $table->foreignId('users_id')->constrained();
+            $table->foreignId('course_packages_id')->constrained();
+            $table->dateTime('expires_at')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateCourseTransactionDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_transaction_details');
+        Schema::dropIfExists('course_memberships');
     }
 }
