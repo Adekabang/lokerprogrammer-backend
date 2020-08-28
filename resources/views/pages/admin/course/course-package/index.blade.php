@@ -64,7 +64,7 @@
             columns: [
                 {data: 'DT_RowIndex', name: 'id'},
                 {data: 'package_name', name: 'package_name'},
-                {data: 'price', name: 'price'},
+                {data: 'price', render: $.fn.dataTable.render.number( '.', ',', 2, 'Rp ' ), name: 'price'},
                 {data: 'Action', name: 'Action'}
             ]
         });

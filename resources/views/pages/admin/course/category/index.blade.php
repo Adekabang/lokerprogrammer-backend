@@ -24,7 +24,7 @@
             <div class="card-header d-flex justify-content-between">
               <h4>Category List</h4>
               <div>
-                <a href="{{ route('category.create') }}" class="modal-show btn btn-primary">Add Category</a>
+                <a href="{{ route('courseCategory.create') }}" class="modal-show btn btn-primary">Add Category</a>
               </div>
             </div>
             <div class="card-body">
@@ -60,7 +60,7 @@
             responsive: true,
             processing: true,
             serverSide: true,
-            ajax: "{{ route('table.category') }}",
+            ajax: "{{ route('table.courseCategory') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'id'},
                 {data: 'category_name', name: 'category_name'},

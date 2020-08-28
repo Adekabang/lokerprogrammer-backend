@@ -68,9 +68,9 @@ class CategoryController extends Controller
             ->addColumn('Action', function ($model) {
                 return view('layouts._action', [
                     'model' => $model,
-                    'url_show' => route('category.show', $model->id),
-                    'url_edit' => route('category.edit', $model->id),
-                    'url_destroy' => route('category.destroy', $model->id)
+                    'url_show' => route('courseCategory.show', $model->id),
+                    'url_edit' => route('courseCategory.edit', $model->id),
+                    'url_destroy' => route('courseCategory.destroy', $model->id)
                 ]);
             })
             ->addIndexColumn()

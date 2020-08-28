@@ -33,7 +33,12 @@
                     <div class="form-group row">
                       <label for="inputPassword" class="col-sm-2 col-form-label">Judul Blog</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" name="judul_blog" value="{{ old('judul_blog') ?? $blog->judul_blog }}" id="judulBlog" placeholder="masukan judul blog" required>
+                        <input type="text" class="form-control @error('category_id') is-invalid @enderror" name="judul_blog" value="{{ old('judul_blog') ?? $blog->judul_blog }}" id="judulBlog" placeholder="masukan judul blog" required>
+                        @error('content_blog')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
                       </div>
                     </div>
 
@@ -50,6 +55,13 @@
                                     >{{$categori->category_name}}</option>
                             @endforeach
                               </select>
+                              
+                              @error('category_id')
+                              <div class="invalid-feedback">
+                                  {{$message}}
+                              </div>
+                          @enderror
+                              
                         </div>
                     </div>
 
@@ -64,7 +76,13 @@
                     <div class="form-group row">
                         <label for="inputPassword" class="col-sm-2 col-form-label">Content</label>
                         <div class="col-sm-10">
-                            <textarea class="summernote-simple" name="content_blog" value="{{old('content_blog') ?? $blog->content_blog}}">{{$blog->content_blog}}</textarea>
+                            <textarea class="summernote-simple @error('category_id') is-invalid @enderror" name="content_blog" value="{{old('content_blog') ?? $blog->content_blog}}" required>{{$blog->content_blog}}</textarea>
+
+                            @error('category_id')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                        @enderror
                         </div>
                     </div>
 

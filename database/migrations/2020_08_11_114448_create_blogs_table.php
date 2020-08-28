@@ -23,7 +23,7 @@ class CreateBlogsTable extends Migration
             $table->text('image')->nullable();
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('blog_categories')
+            $table->foreign('category_id')->references('id')->on('categori_blogs')
             ->onUpdate('CASCADE')
             ->onDelete('CASCADE');
         });
