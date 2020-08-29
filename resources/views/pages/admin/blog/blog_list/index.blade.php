@@ -41,32 +41,6 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {{-- @php
-                        $i = 1;
-                    @endphp
-                    @forelse ($data_blog as $blog)
-                    <tr>
-                      <td>{{$i++}}</td>
-                      <td>{{$blog->judul_blog}}</td>
-                      <td>{{$blog->category->category_name}}</td>
-                      <td>
-                     <img src="{{asset('backend/assets/img/blog/'.$blog->image)}}" alt="" width="50px" srcset="">
-                      </td>
-                      <td>{!!$blog->content_blog!!}</td>
-                      <td>
-                        <a href="{{ route('blog.edit',$blog->id) }}" class="btn btn-sm btn-round btn-icon icon-left btn-success"><i class="far fa-fw fa-edit"></i> Edit</a>
-                        <form id="delete-form-{{ $blog->id }}" class="d-inline" action="{{ route('blog.destroy', $blog->id) }}" method="post">
-                          @csrf
-                          @method('delete')
-                          <button class="delete-confirm btn btn-sm btn-round btn-icon icon-left btn-danger" data-id="{{ $blog->id }}"><i class="fas fa-fw fa-trash-alt"></i> Delete</button>
-                        </form>
-                      </td>
-                    </tr>
-                  @empty
-                    <tr>
-                      <td colspan="4" class="text-center">There's no category yet</td>
-                    </tr>
-                  @endforelse --}}
                   </tbody>
                 </table>
               </div>

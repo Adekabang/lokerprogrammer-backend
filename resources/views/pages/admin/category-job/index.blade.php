@@ -23,18 +23,20 @@
                 <a href="javascript:void(0)" id="createNewItem" class="btn btn-primary">Add Category</a>
               </div>
             </div>
-              <div class="table-responsive">
-                <table class="table table-bordered data-table">
-                  <thead>
-                      <tr>
-                          <th width="5%">No</th>
-                          <th>Name</th>
-                          <th width="15%">Action</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-              </table>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered data-table">
+                    <thead>
+                        <tr>
+                            <th width="5%">No</th>
+                            <th>Name</th>
+                            <th width="15%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                </div>
               </div>
             </div>
           </div>
