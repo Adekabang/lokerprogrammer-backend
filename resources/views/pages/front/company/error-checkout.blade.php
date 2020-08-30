@@ -4,6 +4,6 @@
 <div class="main-content">
   {{ 'Huftt!' }}
   {{ 'Pembayaran anda gagal!' }}
-  <a href="{{ url('/company') }}" class="btn btn-primary">Kembali</a>
+  <a href="{{ route('demo-langganan-company') }}" class="btn btn-primary">Kembali</a>
 </div>
 @endsection

@@ -33,7 +33,7 @@
             </div>
             <div class="pricing-cta">
               @auth
-              <form action="{{ route('checkout_process_company', $item->id) }}" method="POST">
+              <form action="{{ route('checkout_process', [$item->id, 'company']) }}" method="POST">
                 @csrf
                 <button class="btn btn-primary my-2" type="submit">
                   Beli Sekarang <i class="fas fa-arrow-right"></i>

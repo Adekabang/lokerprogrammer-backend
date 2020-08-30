@@ -3,6 +3,6 @@
 @section('content')
 <div class="main-content">
   {{ 'Selamat proses pembayaran kelas premium anda sudah berhasil!' }}
-  <a href="{{ url('/kelas') }}" class="btn btn-primary">Kembali</a>
+  <a href="{{ route('home') }}" class="btn btn-primary">Kembali</a>
 </div>
 @endsection

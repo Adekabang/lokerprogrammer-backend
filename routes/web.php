@@ -52,32 +52,18 @@ Route::get('/table/courseCategory', 'Admin\Course\CategoryController@dataTable')
 Route::get('/table/coursePackage', 'Admin\Course\CoursePackageController@dataTable')->name('table.coursePackage');
 Route::get('/table/coursePackageFeature', 'Admin\Course\CoursePackageFeatureController@dataTable')->name('table.coursePackageFeature');
 
-// Midtrans Course
-Route::namespace('CheckoutCourse')->group(function () {
-    Route::post('/checkout-course/{id}', 'CheckoutController@process')
-        ->name('checkout_process_course')
+// Midtrans
+Route::namespace('Midtrans')->group(function () {
+    Route::post('/checkout/{id}/for/{payment}', 'CheckoutController@process')
+        ->name('checkout_process')
         ->middleware(['auth', 'verified']);
-    Route::get('/checkout-course/confirm/{id}', 'CheckoutController@success')
-        ->name('checkout_success_course')
+    Route::get('/checkout/confirm/{id}/for/{payment}', 'CheckoutController@success')
+        ->name('checkout_success')
         ->middleware(['auth', 'verified']);
-    Route::post('midtrans-course/callback', 'MidtransController@notificationHandler');
-    Route::get('midtrans-course/finish', 'MidtransController@finishRedirect');
-    Route::get('midtrans-course/unfinish', 'MidtransController@unfinishRedirect');
-    Route::get('midtrans-course/error', 'MidtransController@errorRedirect');
-});
-
-// Midtrans Company
-Route::namespace('CheckoutCompany')->group(function () {
-    Route::post('/checkout-company/{id}', 'CheckoutController@process')
-        ->name('checkout_process_company')
-        ->middleware(['auth', 'verified']);
-    Route::get('/checkout-company/confirm/{id}', 'CheckoutController@success')
-        ->name('checkout_success_company')
-        ->middleware(['auth', 'verified']);
-    Route::post('midtrans-company/callback', 'MidtransController@notificationHandler');
-    Route::get('midtrans-company/finish', 'MidtransController@finishRedirect');
-    Route::get('midtrans-company/unfinish', 'MidtransController@unfinishRedirect');
-    Route::get('midtrans-company/error', 'MidtransController@errorRedirect');
+    Route::post('midtrans/callback', 'MidtransController@notificationHandler');
+    Route::get('midtrans/finish', 'MidtransController@finishRedirect');
+    Route::get('midtrans/unfinish', 'MidtransController@unfinishRedirect');
+    Route::get('midtrans/error', 'MidtransController@errorRedirect');
 });
 
 // Datatables Company
