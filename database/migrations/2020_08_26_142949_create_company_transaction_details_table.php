@@ -15,7 +15,6 @@ class CreateCompanyTransactionDetailsTable extends Migration
     {
         Schema::create('company_transaction_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_packages_id')->constrained();
             $table->foreignId('company_transactions_id')->constrained();
             $table->string('username');
             $table->timestamps();

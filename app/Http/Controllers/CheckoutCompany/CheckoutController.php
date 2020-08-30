@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\CheckoutCourse;
+namespace App\Http\Controllers\CheckoutCompany;
 
 use App\Http\Controllers\Controller;
-use App\Models\Course\CoursePackage;
-use App\Models\Course\CourseTransaction;
-use App\Models\Course\CourseTransactionDetail;
+use App\Models\Company\{CompanyPackage, CompanyTransaction, CompanyTransactionDetail};
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -16,26 +14,26 @@ class CheckoutController extends Controller
 {
     public function process(Request $request, $id)
     {
-        $course_package = CoursePackage::findOrFail($id);
-        $transaction = CourseTransaction::create([
-            'course_packages_id' => $id,
+        $company_package = CompanyPackage::findOrFail($id);
+        $transaction = CompanyTransaction::create([
+            'company_packages_id' => $id,
             'users_id' => Auth::user()->id,
-            'transaction_total' => $course_package->price,
+            'transaction_total' => $company_package->price,
             'transaction_status' => 'IN_CART'
         ]);
         $idnya = $transaction->id;
 
-        CourseTransactionDetail::create([
-            'course_transactions_id' => $idnya,
+        CompanyTransactionDetail::create([
+            'company_transactions_id' => $idnya,
             'username' => Auth::user()->username
         ]);
-        return \redirect()->action('CheckoutCourse\CheckoutController@success', ['id' => $idnya]);
+        return \redirect()->action('CheckoutCompany\CheckoutController@success', ['id' => $idnya]);
     }
 
     public function success(Request $request, $id)
     {
         //Goes to Midtrans
-        $transaction = CourseTransaction::findOrFail($id);
+        $transaction = CompanyTransaction::findOrFail($id);
         $transaction->transaction_status = 'PENDING';
         $transaction->save();
 
@@ -47,7 +45,7 @@ class CheckoutController extends Controller
 
         $midtrans_params = [
             'transaction_details' => [
-                'order_id' => 'COURSE-' . $transaction->id,
+                'order_id' => 'COMPANY-' . $transaction->id,
                 'gross_amount' => (int) $transaction->transaction_total
             ],
             'customer_details' => [

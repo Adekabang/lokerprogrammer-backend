@@ -14,7 +14,7 @@
 
     <div class="section-body">
       <div class="row">
-        @foreach ($course_packages as $item)
+        @foreach ($company_packages as $item)
             <div class="col-12 col-md-4 col-lg-4">
           <div class="pricing {{ $item->package_name == 'Gold' ? 'pricing-highlight' : '' }}">
             <div class="pricing-title">
@@ -33,15 +33,15 @@
             </div>
             <div class="pricing-cta">
               @auth
-              <form action="{{ route('checkout_process', $item->id) }}" method="POST">
+              <form action="{{ route('checkout_process_company', $item->id) }}" method="POST">
                 @csrf
-                <button class="btn btn-primary" type="submit">
+                <button class="btn btn-primary my-2" type="submit">
                   Beli Sekarang <i class="fas fa-arrow-right"></i>
                 </button>
               </form>
              @endauth
              @guest
-               <a href="{{ route('login') }}">Login <i class="fas fa-arrow-right"></i></a>
+               <a href="{{ route('login') }}">Login <i class="fas fa-arrow-right my-2"></i></a>
              @endguest
             </div>
           </div>
