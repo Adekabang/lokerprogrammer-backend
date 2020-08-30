@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBlogCategoriesTable extends Migration
+class CreateCompanyMembershipsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateBlogCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categori_blogs', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('category_name')->unique();
-            $table->string('slug');
+        Schema::create('company_memberships', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('users_id')->constrained();
+            $table->foreignId('company_packages_id')->constrained();
+            $table->dateTime('expires_at')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateBlogCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categori_blogs');
+        Schema::dropIfExists('company_memberships');
     }
 }
