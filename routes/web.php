@@ -8,7 +8,7 @@ Route::prefix('admin')
     ->middleware(['auth', 'verified']) //'admin'])
     ->group(function () {
         // Special Routing for Courses
-        Route::namespace('course')
+        Route::namespace('Course')
             ->group(function () {
                 Route::get('/course/show', 'CourseController@showAll')->name('show-course');
                 Route::resource('course', 'CourseController');
@@ -44,20 +44,20 @@ Route::prefix('admin')
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::resource('/kelas', 'KelasController');
+Route::get('/demo-kelas', 'KelasController@index')->name('demo-langganan-course');
+Route::get('/demo-company', 'CompanyController@index')->name('demo-langganan-company');
 
 // Datatables Courses
 Route::get('/table/courseCategory', 'Admin\Course\CategoryController@dataTable')->name('table.courseCategory');
 Route::get('/table/coursePackage', 'Admin\Course\CoursePackageController@dataTable')->name('table.coursePackage');
 Route::get('/table/coursePackageFeature', 'Admin\Course\CoursePackageFeatureController@dataTable')->name('table.coursePackageFeature');
 
-<<<<<<< HEAD
 // Midtrans
-Route::namespace('CheckoutCourse')->group(function () {
-    Route::post('/checkout/{id}', 'CheckoutController@process')
+Route::namespace('Midtrans')->group(function () {
+    Route::post('/checkout/{id}/for/{payment}', 'CheckoutController@process')
         ->name('checkout_process')
         ->middleware(['auth', 'verified']);
-    Route::get('/checkout/confirm/{id}', 'CheckoutController@success')
+    Route::get('/checkout/confirm/{id}/for/{payment}', 'CheckoutController@success')
         ->name('checkout_success')
         ->middleware(['auth', 'verified']);
     Route::post('midtrans/callback', 'MidtransController@notificationHandler');
@@ -65,9 +65,8 @@ Route::namespace('CheckoutCourse')->group(function () {
     Route::get('midtrans/unfinish', 'MidtransController@unfinishRedirect');
     Route::get('midtrans/error', 'MidtransController@errorRedirect');
 });
-=======
+
 // Datatables Company
 Route::get('/table/companyCategory', 'Admin\Company\CategoryController@dataTable')->name('table.companyCategory');
 Route::get('/table/companyPackage', 'Admin\Company\CompanyPackageController@dataTable')->name('table.companyPackage');
 Route::get('/table/companyPackageFeature', 'Admin\Company\CompanyPackageFeatureController@dataTable')->name('table.companyPackageFeature');
->>>>>>> master
