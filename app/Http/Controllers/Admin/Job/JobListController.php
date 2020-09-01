@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Job;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -22,27 +22,27 @@ class JobListController extends Controller
             return Datatables::eloquent($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editItem">Edit</a>';
-   
-                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteItem">Delete</a>';
-                            return $btn;
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editItem">Edit</a>';
+
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteItem">Delete</a>';
+                    return $btn;
                 })
-                ->addColumn('requirement_job', function($row){
+                ->addColumn('requirement_job', function ($row) {
                     $requirement_job = html_entity_decode($row->requirement, ENT_QUOTES, 'UTF-8');
 
                     return $requirement_job;
                 })
-                ->addColumn('required_skill_job', function($row){
+                ->addColumn('required_skill_job', function ($row) {
                     $required_skill_job = html_entity_decode($row->required_skill, ENT_QUOTES, 'UTF-8');
 
                     return $required_skill_job;
                 })
-                ->addColumn('description_job', function($row){
+                ->addColumn('description_job', function ($row) {
                     $description_job = html_entity_decode($row->description, ENT_QUOTES, 'UTF-8');
 
                     return $description_job;
                 })
-                ->rawColumns(['action', 'requirement_job','required_skill_job','description_job'])
+                ->rawColumns(['action', 'requirement_job', 'required_skill_job', 'description_job'])
                 ->make(true);
         }
 
@@ -62,7 +62,7 @@ class JobListController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
+    {
         // dd($request->all());
         JobList::updateOrCreate(
             ['id' => $request->Item_id],
@@ -106,7 +106,7 @@ class JobListController extends Controller
     public function destroy($id)
     {
         JobList::find($id)->delete();
-     
-       return response()->json(['success'=>'Data deleted successfully.']);
+
+        return response()->json(['success' => 'Data deleted successfully.']);
     }
 }
