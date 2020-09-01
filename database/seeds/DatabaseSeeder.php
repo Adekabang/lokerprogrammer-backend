@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         factory(CategoryBlog::class)->create();
         factory(CategoryCourse::class)->create();
         factory(CategoryCompany::class)->create();
-        factory(JobCategory::class, 5)->create();
+        factory(JobCategory::class,5)->create();
         factory(JobList::class, 10)->create();
         $this->call(CoursePackageSeeder::class);
         $this->call(CoursePackageFeatureSeeder::class);
