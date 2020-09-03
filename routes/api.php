@@ -17,5 +17,6 @@ Route::prefix('v1')
         });
         Route::resource('course', 'Course\CourseController');
         Route::resource('courseCategory', 'Course\CategoryController');
+        Route::resource('courseSubCategory', 'Course\SubCategoryController');
         Route::resource('coursePackage', 'Course\PackageController');
     });

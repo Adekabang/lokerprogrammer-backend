@@ -12,4 +12,9 @@ class Course extends Model
     {
         return $this->hasOne(CategoryCourse::class, 'id', 'category_id');
     }
+
+    public function subCategory()
+    {
+        return $this->hasOne(SubCategoryCourse::class, 'id', 'sub_category_id');
+    }
 }

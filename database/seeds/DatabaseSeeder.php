@@ -2,7 +2,7 @@
 
 use App\Models\Blog\{Blog, CategoryBlog};
 use Illuminate\Database\Seeder;
-use App\Models\Course\{Course, CategoryCourse};
+use App\Models\Course\{Course, CategoryCourse, SubCategoryCourse};
 use App\Models\Company\{Company, CategoryCompany};
 use App\Models\Job\JobCategory;
 use App\Models\Job\JobList;
@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         factory(Company::class, 3)->create();
         factory(CategoryBlog::class)->create();
         factory(CategoryCourse::class)->create();
+        factory(SubCategoryCourse::class)->create();
         factory(CategoryCompany::class)->create();
         factory(JobCategory::class, 5)->create();
         factory(JobList::class, 10)->create();

@@ -18,6 +18,8 @@ class Course extends JsonResource
             'description' => $this->description,
             'created_at' => $this->created_at->format('d/m/Y'),
             'updated_at' => $this->updated_at->format('d/m/Y'),
+            'category' => $this->category,
+            'sub_category' => $this->subCategory
         ];
     }
 }

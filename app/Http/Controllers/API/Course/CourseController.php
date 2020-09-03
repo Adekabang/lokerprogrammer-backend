@@ -11,14 +11,14 @@ class CourseController extends BaseController
 
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::with('category', 'subCategory')->get();
 
         return $this->sendResponse(CourseResource::collection($courses), 'Courses retrieved successfully.');
     }
 
     public function show($id)
     {
-        $course = Course::find($id);
+        $course = Course::with('category', 'subCategory')->find($id);
 
         if (is_null($course)) {
             return $this->sendError('Course not found.');

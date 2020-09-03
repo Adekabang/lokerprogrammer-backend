@@ -15,6 +15,7 @@ Route::prefix('admin')
                 Route::resource('coursePackage', 'CoursePackageController');
                 Route::resource('coursePackageFeature', 'CoursePackageFeatureController');
                 Route::resource('courseCategory', 'CategoryController');
+                Route::resource('courseSubCategory', 'SubCategoryCourseController');
                 Route::resource('lesson', 'LessonController');
             });
         // Special Routing for Company
@@ -49,6 +50,7 @@ Route::get('/demo-company', 'CompanyController@index')->name('demo-langganan-com
 
 // Datatables Courses
 Route::get('/table/courseCategory', 'Admin\Course\CategoryController@dataTable')->name('table.courseCategory');
+Route::get('/table/courseSubCategory', 'Admin\Course\SubCategoryCourseController@dataTable')->name('table.courseSubCategory');
 Route::get('/table/coursePackage', 'Admin\Course\CoursePackageController@dataTable')->name('table.coursePackage');
 Route::get('/table/coursePackageFeature', 'Admin\Course\CoursePackageFeatureController@dataTable')->name('table.coursePackageFeature');
 

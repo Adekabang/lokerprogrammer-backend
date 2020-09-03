@@ -81,6 +81,17 @@
                 </div>
               </div>
               <div class="form-group row mb-4">
+                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Sub Category</label>
+                <div class="col-sm-12 col-md-7">
+                  <select class="form-control custom-select selectric @error('sub_category_course') is-invalid @enderror" name="sub_category_course" required>
+                    <option value="" selected disabled>~ Choose Sub Category ~</option>
+                    @foreach ($subCategories as $sub)
+                      <option value="{{ $sub->id }}">{{ $sub->subcategory_name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Thumbnail</label>
                 <div class="col-sm-12 col-md-7">
                   <div id="image-preview" class="image-preview">
