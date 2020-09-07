@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Request\Admin\Blog;
+namespace App\Http\Requests\Admin\Job;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class CategoryBlogRequest extends FormRequest
+class JobTagRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class CategoryBlogRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,10 @@ class CategoryBlogRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'tag_name' => [
+                'required',
+                Rule::unique('tags', 'tag_name')->ignore($this->jobTag)
+            ]
         ];
     }
 }

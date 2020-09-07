@@ -38,9 +38,10 @@ Route::prefix('admin')
         Route::get('/table/category_blog', 'Blog\BlogCategorieController@dataTable')->name('table.category_blog');
 
         //Category Job
-        Route::resource('category-job', 'JobCategoryController');
-        Route::resource('joblist', 'JobListController');
-        Route::post('category-job/getCategory', 'JobListController@getCategory')->name('category-job.getCategory');
+        Route::get('/job/show', 'Job\JobController@showAll')->name('show-job');
+        Route::resource('jobCategory', 'Job\CategoryJobController');
+        Route::resource('jobTag', 'Job\JobTagController');
+        Route::resource('job', 'Job\JobController');
     });
 Auth::routes();
 
@@ -72,3 +73,6 @@ Route::namespace('Midtrans')->group(function () {
 Route::get('/table/companyCategory', 'Admin\Company\CategoryController@dataTable')->name('table.companyCategory');
 Route::get('/table/companyPackage', 'Admin\Company\CompanyPackageController@dataTable')->name('table.companyPackage');
 Route::get('/table/companyPackageFeature', 'Admin\Company\CompanyPackageFeatureController@dataTable')->name('table.companyPackageFeature');
+
+Route::get('/table/jobCategory', 'Admin\Job\CategoryJobController@dataTable')->name('table.jobCategory');
+Route::get('/table/jobTag', 'Admin\Job\JobTagController@dataTable')->name('table.jobTag');

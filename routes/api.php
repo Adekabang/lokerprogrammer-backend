@@ -15,6 +15,7 @@ Route::prefix('v1')
             Route::get('show', 'UserController@show');
             Route::resource('lesson', 'Course\LessonController');
         });
+        Route::get('/course/search/{keyword}', 'Course\CourseController@search');
         Route::resource('course', 'Course\CourseController');
         Route::resource('courseCategory', 'Course\CategoryController');
         Route::resource('courseSubCategory', 'Course\SubCategoryController');
