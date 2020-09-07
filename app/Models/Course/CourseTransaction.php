@@ -4,14 +4,19 @@ namespace App\Models\Course;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class CourseTransaction extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
-        'course_packages_id', 'users_id', 'transaction_total', 'transaction_status'
+        'transaction_status'
     ];
 
     protected $hidden = [];
+    protected $dates = ['deleted_at'];
 
     public function details()
     {
@@ -25,4 +30,6 @@ class CourseTransaction extends Model
     {
         return $this->belongsTo(User::class, 'users_id', 'id');
     }
+
+
 }

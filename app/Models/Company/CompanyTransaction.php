@@ -4,14 +4,17 @@ namespace App\Models\Company;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CompanyTransaction extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
         'company_packages_id', 'users_id', 'transaction_total', 'transaction_status'
     ];
 
     protected $hidden = [];
+    protected $dates = ['deleted_at'];
 
     public function details()
     {
