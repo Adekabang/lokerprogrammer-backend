@@ -20,4 +20,8 @@ Route::prefix('v1')
         Route::resource('courseCategory', 'Course\CategoryController');
         Route::resource('courseSubCategory', 'Course\SubCategoryController');
         Route::resource('coursePackage', 'Course\PackageController');
+
+        // Blog
+        Route::resource('blog', 'Blog\BlogController');
+        Route::resource('blogCategory', 'Blog\CategoryController');
     });
