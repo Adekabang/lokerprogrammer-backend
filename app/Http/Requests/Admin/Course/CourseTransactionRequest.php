@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Request\Admin\Blog;
+namespace App\Http\Requests\Admin\Course;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryBlogRequest extends FormRequest
+
+class CourseTransactionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class CategoryBlogRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,7 @@ class CategoryBlogRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'transaction_status' => 'required'
         ];
     }
 }

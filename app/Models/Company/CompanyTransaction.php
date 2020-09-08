@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Models\Course;
+namespace App\Models\Company;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
-class CourseTransaction extends Model
+class CompanyTransaction extends Model
 {
     use SoftDeletes;
-
     protected $fillable = [
-        'transaction_status'
+        'company_packages_id', 'users_id', 'transaction_total', 'transaction_status'
     ];
 
     protected $hidden = [];
@@ -20,16 +18,14 @@ class CourseTransaction extends Model
 
     public function details()
     {
-        return $this->hasMany(CourseTransactionDetail::class, 'course_transactions_id', 'id');
+        return $this->hasMany(CompanyTransactionDetail::class, 'company_transactions_id', 'id');
     }
-    public function course_package()
+    public function company_package()
     {
-        return $this->belongsTo(CoursePackage::class, 'course_packages_id', 'id');
+        return $this->belongsTo(CompanyPackage::class, 'company_packages_id', 'id');
     }
     public function user()
     {
         return $this->belongsTo(User::class, 'users_id', 'id');
     }
-
-
 }

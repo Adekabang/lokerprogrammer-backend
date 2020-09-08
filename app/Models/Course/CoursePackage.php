@@ -12,4 +12,10 @@ class CoursePackage extends Model
     {
         return $this->belongsTo(CoursePackageFeature::class, 'id', 'course_packages_id');
     }
+
+    public function course_package()
+    {
+        return $this->hasMany(CoursePackage::class, 'course_packages_id', 'id');
+    }
+   
 }

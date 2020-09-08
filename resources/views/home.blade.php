@@ -16,7 +16,8 @@
 
                     {{ __('You are logged in!') }}
                     <br>
-                    <a href="{{ url('home') }}" class="btn btn-primary mt-4">Beli Kelas</a>                                               
+                        <a href="{{ url('demo-kelas') }}" class="btn btn-primary mr-4 mt-4">Beli Paket Kelas</a>
+                        <a href="{{ url('demo-company') }}" class="btn btn-info mt-4">Beli Paket Company</a>  
                 </div>
             </div>
         </div>
