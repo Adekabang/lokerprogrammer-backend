@@ -17,6 +17,7 @@ Route::prefix('admin')
                 Route::resource('courseCategory', 'CategoryController');
                 Route::resource('courseSubCategory', 'SubCategoryCourseController');
                 Route::resource('lesson', 'LessonController');
+                Route::resource('courseTransaction', 'CourseTransactionController');
             });
         // Special Routing for Company
         Route::namespace('company')
@@ -26,6 +27,8 @@ Route::prefix('admin')
                 Route::resource('companyPackage', 'CompanyPackageController');
                 Route::resource('companyPackageFeature', 'CompanyPackageFeatureController');
                 Route::resource('companyCategory', 'CategoryController');
+                Route::resource('companyTransaction', 'CompanyTransactionController');
+                
             });
 
         Route::get('/', 'DashboardController@index')->name('dashboard');
@@ -54,6 +57,7 @@ Route::get('/table/courseCategory', 'Admin\Course\CategoryController@dataTable')
 Route::get('/table/courseSubCategory', 'Admin\Course\SubCategoryCourseController@dataTable')->name('table.courseSubCategory');
 Route::get('/table/coursePackage', 'Admin\Course\CoursePackageController@dataTable')->name('table.coursePackage');
 Route::get('/table/coursePackageFeature', 'Admin\Course\CoursePackageFeatureController@dataTable')->name('table.coursePackageFeature');
+Route::get('/table/courseTransaction', 'Admin\Course\CourseTransactionController@dataTable')->name('table.courseTransaction');
 
 // Midtrans
 Route::namespace('Midtrans')->group(function () {
@@ -73,6 +77,6 @@ Route::namespace('Midtrans')->group(function () {
 Route::get('/table/companyCategory', 'Admin\Company\CategoryController@dataTable')->name('table.companyCategory');
 Route::get('/table/companyPackage', 'Admin\Company\CompanyPackageController@dataTable')->name('table.companyPackage');
 Route::get('/table/companyPackageFeature', 'Admin\Company\CompanyPackageFeatureController@dataTable')->name('table.companyPackageFeature');
-
 Route::get('/table/jobCategory', 'Admin\Job\CategoryJobController@dataTable')->name('table.jobCategory');
 Route::get('/table/jobTag', 'Admin\Job\JobTagController@dataTable')->name('table.jobTag');
+Route::get('/table/companyTransaction', 'Admin\Company\CompanyTransactionController@dataTable')->name('table.companyTransaction');

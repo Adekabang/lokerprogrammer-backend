@@ -20,6 +20,7 @@ class CreateCompanyTransactionsTable extends Migration
             $table->integer('transaction_total')->constrained();
             $table->string('transaction_status')->constrained();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +31,8 @@ class CreateCompanyTransactionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('company_transactions');
+        Schema::dropIfExists('company_transactions',function(Blueprint $table){
+            $table->dropSoftDeletes();
+        });
     }
 }
