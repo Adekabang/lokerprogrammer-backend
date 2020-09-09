@@ -25,6 +25,7 @@ class CourseRequest extends FormRequest
     {
         return [
             'category_course' => 'required|exists:category_courses,id',
+            'sub_category_course' => 'required|exists:sub_category_courses,id',
             'course_name' => 'required',
             'course_author' => 'required',
             'label' => 'required|string|in:FREE,PREMIUM',

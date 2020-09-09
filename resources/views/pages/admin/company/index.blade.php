@@ -56,8 +56,8 @@
                       <td>{{ $company->contact }}</td>
                       <td>{{ $company->status }}</td>
                       <td class="text-center" style="width: 200px;"><img src="{{ Storage::url($company->logo) }}" class="w-50"></td>
-                      <td>
-                        <a href="{{ route('company.edit', $company->id) }}" class="btn btn-sm btn-round btn-icon icon-left btn-success"><i class="far fa-fw fa-edit"></i> Edit</a>
+                      <td class="text-center">
+                        <a href="{{ route('company.edit', $company->id) }}" class="mb-2 btn btn-sm btn-round btn-icon icon-left btn-success"><i class="far fa-fw fa-edit"></i> Edit</a>
                         <button type="button" onclick="deleteData({{ $company->id }})" class="btn btn-sm btn-round btn-icon icon-left btn-danger"><i class="fas fa-fw fa-trash-alt"></i> Delete</a>
                         </button>
                         <form id="delete-form-{{ $company->id }}"
