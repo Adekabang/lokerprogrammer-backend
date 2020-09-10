@@ -83,7 +83,7 @@
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category</label>
                 <div class="col-sm-12 col-md-7">
                   <select class="form-control custom-select selectric @error('category_course') is-invalid @enderror" name="category_course">
-                    <option disabled value="{{ $course->category_id }}" selected>Prev. Category: {{ $course->category->category_name }}</option>
+                    <option value="{{ $course->category_id }}" selected>Prev. Category: {{ $course->category->category_name }}</option>
                     @foreach ($category as $cat)
                       <option value="{{ $cat->id }}">{{ $cat->category_name }}</option>
                     @endforeach

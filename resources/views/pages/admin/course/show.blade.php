@@ -30,7 +30,7 @@
                 </div>
               </div>
               <div class="article-details">
-                <div class="article-category"><a href="#">{{ $course->status }}</a> <div class="bullet"></div> <a href="#">@currency($course->price)</a></div>
+                <div class="article-category"><a href="#">{{ $course->status }}</a> <div class="bullet"></div> <a href="#">{{ $course->label }}</a></div>
                 <div class="article-title">
                   <h2><a href="#">{{ $course->course_name }}</a></h2>
                 </div>

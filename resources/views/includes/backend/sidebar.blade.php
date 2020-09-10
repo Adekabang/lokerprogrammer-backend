@@ -21,13 +21,11 @@
             
             <li class="{{ (request()->segment(2) == 'course') ? 'active' : ''}}"><a class="nav-link" href="{{ route('course.index') }}">Course Lists </a></li>
             <li class="{{ (request()->segment(2) == 'lesson') ? 'active' : ''}}"><a class="nav-link" href="{{ route('lesson.index') }}">Course Lessons</a></li>
-
-            <li class="{{ (request()->segment(2) == 'courseTransaction') ? 'active' : ''}}"><a class="nav-link" href="{{ route('courseTransaction.index') }}">Course Transaction</a></li>
           </ul>
         </li>
 
         <li class="menu-header">Trancastion</li>
-        <li class="nav-item dropdown {{ (request()->segment(2) == 'courseTransaction') || (request()->segment(2) == 'courseTransaction')  ? 'active' : ''}}">
+        <li class="nav-item dropdown {{ (request()->segment(2) == 'courseTransaction') || (request()->segment(2) == 'companyTransaction')  ? 'active' : ''}}">
           <a href="#" class="nav-link has-dropdown"><i class="fas fa-newspaper"></i><span>Transaction</span></a>
           <ul class="dropdown-menu">
             <li class="{{ (request()->segment(2) == 'courseTransaction') ? 'active' : ''}}"><a class="nav-link" href="{{ route('courseTransaction.index') }}">Course Transaction</a></li>

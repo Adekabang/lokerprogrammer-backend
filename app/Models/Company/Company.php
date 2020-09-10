@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
-    protected $guard = [];
+    protected $fillable = ['users_id', 'category_id', 'company_name', 'slug', 'logo', 'location', 'contact', 'description', 'status'];
 
     public function category()
     {

@@ -10,13 +10,13 @@
           </div>
 
           <div class="card card-primary">
-            <div class="card-header"><h4>Register</h4></div>
+            <div class="card-header"><h4>Register Company</h4></div>
 
             <div class="card-body">
               <form method="POST" action="{{ route('register') }}">
                 @csrf
                   <div class="form-group">
-                    <label for="name">Full Name</label>
+                    <label for="name">Company Name</label>
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                     @error('name')
                         <div class="invalid-feedback" role="alert">
@@ -25,7 +25,7 @@
                     @enderror
                   </div>
                   <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="username">Company Username</label>
                     <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
                     @error('username')
                         <div class="invalid-feedback" role="alert">
@@ -68,6 +68,7 @@
                   <button type="submit" class="btn btn-primary btn-lg btn-block">
                     Register
                   </button>
+                  <input type="hidden" name="company" value="{{ request()->segment(1) }}">
                 </div>
                 <div class="mt-2 text-center">
                     Have an account? <a href="{{ route('login') }}">Login</a>

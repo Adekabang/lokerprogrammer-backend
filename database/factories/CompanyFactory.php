@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Models\Company\{Company, CategoryCompany};
+use App\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -11,6 +12,7 @@ $factory->define(Company::class, function (Faker $faker) {
     $slug = Str::slug($company_name);
     return [
         'category_id' => factory(CategoryCompany::class),
+        'users_id' => factory(User::class),
         'company_name' => $company_name,
         'slug' => $slug,
         'logo' => 'assets/img/company/thumbnail.jpg',

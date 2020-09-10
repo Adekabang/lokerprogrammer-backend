@@ -43,6 +43,9 @@ Route::prefix('admin')
         Route::resource('joblist', 'JobListController');
         Route::post('category-job/getCategory', 'JobListController@getCategory')->name('category-job.getCategory');
     });
+Route::get('/company/register', function () {
+    return view('auth.register-company');
+});
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');

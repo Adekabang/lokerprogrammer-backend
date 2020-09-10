@@ -15,6 +15,7 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('users_id');
             $table->unsignedBigInteger('category_id');
             $table->string('company_name')->unique();
             $table->string('slug');
@@ -25,6 +26,7 @@ class CreateCompaniesTable extends Migration
             $table->string('status');
             $table->timestamps();
 
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('category_companies')->onDelete('cascade');
         });
     }
