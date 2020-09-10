@@ -11,10 +11,11 @@
           <a href="{{ route('dashboard') }}" class="nav-link"><i class="fas fa-warehouse"></i><span>Dashboard</span></a>
         </li>
         <li class="menu-header">Courses</li>
-        <li class="nav-item dropdown {{ (request()->segment(2) == 'course') || (request()->segment(2) == 'courseCategory') || (request()->segment(2) == 'lesson') || (request()->segment(2) == 'coursePackage') || (request()->segment(2) == 'coursePackageFeature') ? 'active' : ''}}">
+        <li class="nav-item dropdown {{ (request()->segment(2) == 'course') || (request()->segment(2) == 'courseCategory') || (request()->segment(2) == 'lesson') || (request()->segment(2) == 'coursePackage') || (request()->segment(2) == 'coursePackageFeature') || (request()->segment(2) == 'courseSubCategory') ? 'active' : ''}}">
           <a href="#" class="nav-link has-dropdown"><i class="fas fa-book"></i><span>Course</span></a>
           <ul class="dropdown-menu">
             <li class="{{ (request()->segment(2) == 'courseCategory') ? 'active' : ''}}"><a class="nav-link" href="{{ route('courseCategory.index') }}">Course Categories </a></li>
+            <li class="{{ (request()->segment(2) == 'courseSubCategory') ? 'active' : ''}}"><a class="nav-link" href="{{ route('courseSubCategory.index') }}">Course SubCategories </a></li>
             
             <li class="{{ (request()->segment(2) == 'coursePackage') ? 'active' : ''}}"><a class="nav-link" href="{{ route('coursePackage.index') }}">Course Packages </a></li>
             <li class="{{ (request()->segment(2) == 'coursePackageFeature') ? 'active' : ''}}"><a class="nav-link" href="{{ route('coursePackageFeature.index') }}">Course Package Features </a></li>
@@ -47,12 +48,13 @@
         </li>
         
         <li class="menu-header">Jobs</li>
-        <li class="nav-item dropdown {{ (request()->segment(2) == 'joblist') || (request()->segment(2) == 'category-job')  ? 'active' : ''}}">
+        <li class="nav-item dropdown {{ (request()->segment(2) == 'job') || (request()->segment(2) == 'jobCategory') || (request()->segment(2) == 'jobTag') ? 'active' : ''}}">
           <a href="#" class="nav-link has-dropdown"><i class="fas fa-briefcase"></i><span>Job</span></a>
           <ul class="dropdown-menu">
-            <li class="{{ (request()->segment(2) == 'joblist') ? 'active' : ''}}"><a class="nav-link" href="{{ route('joblist.index') }}">Job List</a></li>
+            <li class="{{ (request()->segment(2) == 'jobCategory') ? 'active' : ''}}"><a class="nav-link" href="{{ route('jobCategory.index') }}">Category Job</a></li>          
+            <li class="{{ (request()->segment(2) == 'jobTag') ? 'active' : ''}}"><a class="nav-link" href="{{ route('jobTag.index') }}">Job Tag</a></li>          
+            <li class="{{ (request()->segment(2) == 'job') ? 'active' : ''}}"><a class="nav-link" href="{{ route('job.index') }}">Job List</a></li>
             
-            <li class="{{ (request()->segment(2) == 'category-job') ? 'active' : ''}}"><a class="nav-link" href="{{ route('category-job.index') }}">Category Job</a></li>          
           </ul>
         </li>
         <li class="menu-header">Blogs</li>

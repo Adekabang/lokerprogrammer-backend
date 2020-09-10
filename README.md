@@ -14,8 +14,8 @@ Pastikan di komputer anda terinstall Composer dan Nodejs.
 - Ubah nama file <b>.env.example</b> jadi <b>.env</b>
 - Setting database di <b>.env</b> 
 - Jalankan perintah <b>php artisan key:generate</b>
-- Jalankan perintah <b>php artisan migrate</b>
-- Jalankan perintah <b>php artisan db:seed</b>
+- Jalankan perintah <b>php artisan migrate:refresh --seed</b>
+- Jalankan perintah <b>php artisan passport:install</b>
 - Lalu masuk ke folder <b>public/backend/</b> (buka termiinal disini)
 - Ketikan diterminal <b>yarn</b> untuk menginstall package node_modules.
 - Yeay, you made it!

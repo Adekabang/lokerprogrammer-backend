@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSlugInJobLists extends Migration
+class AddSubCategoryCoursesIdToCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddSlugInJobLists extends Migration
      */
     public function up()
     {
-        Schema::table('job_lists', function (Blueprint $table) {
-            $table->string('slug');
+        Schema::table('courses', function (Blueprint $table) {
+            $table->unsignedBigInteger('sub_category_id')->after('category_id');
         });
     }
 
@@ -25,8 +25,8 @@ class AddSlugInJobLists extends Migration
      */
     public function down()
     {
-        Schema::table('job_lists', function (Blueprint $table) {
-            //
+        Schema::table('courses', function (Blueprint $table) {
+            $table->dropColumn('sub_category_id');
         });
     }
 }

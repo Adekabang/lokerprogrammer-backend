@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -16,7 +17,9 @@ class LessonSeeder extends Seeder
                 'video' => '6z-mmJa3NT0', // https://www.youtube.com/watch?v=6z-mmJa3NT0
                 'duration' => '17:35',
                 'episode' => 'Episode-1',
-                'status' => 'PUBLISH'
+                'status' => 'PUBLISH',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'course_id' => 2,
@@ -26,6 +29,8 @@ class LessonSeeder extends Seeder
                 'duration' => '16:15',
                 'episode' => 'Episode-2',
                 'status' => 'PUBLISH',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]
         ]);
     }

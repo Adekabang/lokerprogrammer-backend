@@ -15,6 +15,7 @@ Route::prefix('admin')
                 Route::resource('coursePackage', 'CoursePackageController');
                 Route::resource('coursePackageFeature', 'CoursePackageFeatureController');
                 Route::resource('courseCategory', 'CategoryController');
+                Route::resource('courseSubCategory', 'SubCategoryCourseController');
                 Route::resource('lesson', 'LessonController');
                 Route::resource('courseTransaction', 'CourseTransactionController');
             });
@@ -39,9 +40,10 @@ Route::prefix('admin')
         Route::get('/table/category_blog', 'Blog\BlogCategorieController@dataTable')->name('table.category_blog');
 
         //Category Job
-        Route::resource('category-job', 'JobCategoryController');
-        Route::resource('joblist', 'JobListController');
-        Route::post('category-job/getCategory', 'JobListController@getCategory')->name('category-job.getCategory');
+        Route::get('/job/show', 'Job\JobController@showAll')->name('show-job');
+        Route::resource('jobCategory', 'Job\CategoryJobController');
+        Route::resource('jobTag', 'Job\JobTagController');
+        Route::resource('job', 'Job\JobController');
     });
 Route::get('/company/register', function () {
     return view('auth.register-company');
@@ -54,6 +56,7 @@ Route::get('/demo-company', 'CompanyController@index')->name('demo-langganan-com
 
 // Datatables Courses
 Route::get('/table/courseCategory', 'Admin\Course\CategoryController@dataTable')->name('table.courseCategory');
+Route::get('/table/courseSubCategory', 'Admin\Course\SubCategoryCourseController@dataTable')->name('table.courseSubCategory');
 Route::get('/table/coursePackage', 'Admin\Course\CoursePackageController@dataTable')->name('table.coursePackage');
 Route::get('/table/coursePackageFeature', 'Admin\Course\CoursePackageFeatureController@dataTable')->name('table.coursePackageFeature');
 Route::get('/table/courseTransaction', 'Admin\Course\CourseTransactionController@dataTable')->name('table.courseTransaction');
@@ -75,5 +78,6 @@ Route::namespace('Midtrans')->group(function () {
 Route::get('/table/companyCategory', 'Admin\Company\CategoryController@dataTable')->name('table.companyCategory');
 Route::get('/table/companyPackage', 'Admin\Company\CompanyPackageController@dataTable')->name('table.companyPackage');
 Route::get('/table/companyPackageFeature', 'Admin\Company\CompanyPackageFeatureController@dataTable')->name('table.companyPackageFeature');
-
+Route::get('/table/jobCategory', 'Admin\Job\CategoryJobController@dataTable')->name('table.jobCategory');
+Route::get('/table/jobTag', 'Admin\Job\JobTagController@dataTable')->name('table.jobTag');
 Route::get('/table/companyTransaction', 'Admin\Company\CompanyTransactionController@dataTable')->name('table.companyTransaction');

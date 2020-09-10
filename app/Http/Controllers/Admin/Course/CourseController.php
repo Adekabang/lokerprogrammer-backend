@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Course;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Course\CourseRequest;
-use App\Models\Course\{CategoryCourse, Course};
+use App\Models\Course\{CategoryCourse, Course, SubCategoryCourse};
 use Illuminate\Support\Str;
 
 
@@ -13,7 +13,7 @@ class CourseController extends Controller
     // Courses list page
     public function index()
     {
-        $courses = Course::with('category')->latest()->get();
+        $courses = Course::with('category', 'subCategory')->latest()->get();
         return \view('pages.admin.course.index', \compact('courses'));
     }
 
@@ -21,7 +21,8 @@ class CourseController extends Controller
     public function create()
     {
         $category = CategoryCourse::all();
-        return \view('pages.admin.course.crud-course.create', \compact('category'));
+        $subCategories = SubCategoryCourse::all();
+        return \view('pages.admin.course.crud-course.create', \compact('category', 'subCategories'));
     }
 
     // Processing form add a course
@@ -44,6 +45,7 @@ class CourseController extends Controller
         $course = new Course();
         $course->course_name = $request->course_name;
         $course->category_id = $request->category_course;
+        $course->sub_category_id = $request->sub_category_course;
         $course->slug = Str::slug($request->course_name);
         $course->course_author = $request->course_author;
         $course->label = $request->label;
@@ -66,8 +68,9 @@ class CourseController extends Controller
     public function edit($id)
     {
         $category = CategoryCourse::all();
-        $course = Course::findOrFail($id);
-        return \view('pages.admin.course.crud-course.edit', \compact('course', 'category'));
+        $subCategories = SubCategoryCourse::all();
+        $course = Course::with('subCategory')->findOrFail($id);
+        return \view('pages.admin.course.crud-course.edit', \compact('course', 'category', 'subCategories'));
     }
 
     // Processing form edit course
@@ -90,6 +93,7 @@ class CourseController extends Controller
 
         Course::where('id', $id)->update([
             'category_id' => $request->category_course,
+            'sub_category_id' => $request->sub_category_course,
             'course_name' => $request->course_name,
             'slug' => Str::slug($request->course_name),
             'course_author' => $request->course_author,
