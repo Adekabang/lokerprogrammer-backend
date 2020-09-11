@@ -16,12 +16,10 @@ Pastikan di komputer anda terinstall Composer dan Nodejs.
 - Jalankan perintah <b>php artisan key:generate</b>
 - Jalankan perintah <b>php artisan migrate:refresh --seed</b>
 - Jalankan perintah <b>php artisan passport:install</b>
-- Lalu masuk ke folder <b>public/backend/</b> (buka termiinal disini)
-- Ketikan diterminal <b>yarn</b> untuk menginstall package node_modules.
 - Yeay, you made it!
 
 - Jalankan perintah <b>php artisan serve</b>
-- Buka http://127.0.0.1:8000/admin
+- Buka postman/etc : http://127.0.0.1:8000/api/v1/{endpoints}
   
 ## License
 
