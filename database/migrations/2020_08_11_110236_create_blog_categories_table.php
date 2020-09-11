@@ -13,7 +13,7 @@ class CreateBlogCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categori_blogs', function (Blueprint $table) {
+        Schema::create('category_blogs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('category_name')->unique();
             $table->string('slug');
@@ -28,6 +28,6 @@ class CreateBlogCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categori_blogs');
+        Schema::dropIfExists('category_blogs');
     }
 }

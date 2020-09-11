@@ -79,7 +79,7 @@
                         document.getElementById("greating").innerHTML='Good Evening'
                     }
                 </script>
-              <h5 class="font-weight-normal text-muted-transparent">Kalimantan Barat, Indonesia</h5>
+              <h5 class="font-weight-normal text-muted-transparent">Bali, Indonesia</h5>
             </div>
             Photo by <a class="text-light bb" target="_blank" href="https://unsplash.com/photos/a8lTjWJJgLA">Justin Kauffman</a> on <a class="text-light bb" target="_blank" href="https://unsplash.com">Unsplash</a>
           </div>

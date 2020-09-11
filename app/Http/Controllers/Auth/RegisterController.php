@@ -70,7 +70,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if ($data['company']) {
+        if ($data['company'] === 'company') {
             $user =  User::create([
                 'name' => $data['name'],
                 'username' => $data['username'],
@@ -92,7 +92,7 @@ class RegisterController extends Controller
         } else {
             $user =  User::create([
                 'name' => $data['name'],
-                'username' => $data['username'],
+                'username' => Str::slug($data['username']),
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'roles' => 'MEMBER'

@@ -68,6 +68,7 @@
                   <button type="submit" class="btn btn-primary btn-lg btn-block">
                     Register
                   </button>
+                  <input type="hidden" name="company" value="">
                 </div>
                 <div class="mt-2 text-center">
                     Have an account? <a href="{{ route('login') }}">Login</a>

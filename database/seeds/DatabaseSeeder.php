@@ -16,21 +16,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(LessonSeeder::class);
         factory(User::class, 3)->create();
-        factory(Course::class, 3)->create();
+        $this->call(MemberSeeder::class);
+        $this->call(CategoryBlogSeeder::class);
         factory(Blog::class, 3)->create();
+        $this->call(CategoryCourseSeeder::class);
+        $this->call(SubCategoryCourseSeeder::class);
+        $this->call(CourseSeeder::class);
+        $this->call(CategoryCompanySeeder::class);
         factory(Company::class, 3)->create();
-        factory(CategoryBlog::class)->create();
-        factory(CategoryCourse::class)->create();
-        factory(SubCategoryCourse::class)->create();
-        factory(CategoryCompany::class)->create();
-        factory(CategoryJob::class, 3)->create();
-        factory(Tag::class, 3)->create();
-        factory(Job::class, 3)->create();
+        $this->call(CategoryJobSeeder::class);
+        $this->call(JobTagSeeder::class);
+        $this->call(JobSeeder::class);
         factory(JobTag::class, 3)->create();
         $this->call(CoursePackageSeeder::class);
         $this->call(CoursePackageFeatureSeeder::class);
+        $this->call(LessonSeeder::class);
         $this->call(CompanyPackageSeeder::class);
         $this->call(CompanyPackageFeatureSeeder::class);
     }

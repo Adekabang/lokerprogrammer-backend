@@ -9,7 +9,9 @@ use Illuminate\Support\Str;
 $factory->define(Blog::class, function (Faker $faker) {
     $judul_blog = $faker->unique()->city;
     return [
-        'category_id' => factory(CategoryBlog::class),
+        'category_id' => function () {
+            return CategoryBlog::all()->random();
+        },
         'judul_blog' => $judul_blog,
         'slug_blog_id' => Str::slug($judul_blog),
         'content_blog' => $faker->text(100),
