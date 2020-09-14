@@ -23,4 +23,12 @@ Route::prefix('v1')
         // Blog
         Route::resource('blog', 'Blog\BlogController');
         Route::resource('blogCategory', 'Blog\CategoryController');
+        Route::get('blog/search/{keyword}', 'Blog\BlogController@search');
+
+        // company
+        Route::resource('company', 'Company\CompanyController');
+        Route::resource('companyCategory', 'Company\CategoryController');
+        Route::resource('companyPackage', 'Company\PackageController');
+        Route::resource('companyPackageFeature', 'Company\PackageFeatureController');
+        Route::get('company/search/{keyword}', 'Company\CompanyController@search');
     });

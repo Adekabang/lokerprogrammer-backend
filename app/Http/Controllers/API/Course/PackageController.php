@@ -12,7 +12,6 @@ class PackageController extends BaseController
     public function index()
     {
         $packages = CoursePackageFeature::with('coursePackage')->latest()->get();
-
         return $this->sendResponse(PackageResource::collection($packages), 'Course package retrieved successfully.');
     }
 

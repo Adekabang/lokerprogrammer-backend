@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Blog;
+namespace App\Http\Resources\Company;
 
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Blog extends JsonResource
+class Category extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +17,8 @@ class Blog extends JsonResource
     {
         return [
             'id' => $this->id,
-            'category_id' => $this->category_id,
-            'judul_blog' => $this->judul_blog,
-            'slug_blog_id' => $this->slug_blog_id,
-            'content_blog' => $this->content_blog,
-            'image' => $this->images,
+            'category_name' => $this->category_name,
+            'slug' => $this->slug,
             'created_at' => Carbon::parse($this->created_at)->format('d-m-Y'),
             'updated_at' => Carbon::parse($this->updated_at)->format('d-m-Y'),
         ];

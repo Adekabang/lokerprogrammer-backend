@@ -12,14 +12,12 @@ class LessonController extends BaseController
     public function index()
     {
         $courses = CourseLesson::all();
-
         return $this->sendResponse(LessonResource::collection($courses), 'Lessons retrieved successfully.');
     }
 
     public function show($id)
     {
         $course = CourseLesson::find($id);
-
         if (is_null($course)) {
             return $this->sendError('Lesson not found.');
         }
