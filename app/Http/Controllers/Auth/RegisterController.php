@@ -87,7 +87,7 @@ class RegisterController extends Controller
                 'location' => 'Silahkan dilengkapi',
                 'contact' => 'Silahkan dilengkapi',
                 'description' => 'Silahkan dilengkapi',
-                'status' => 'NON-ACTIVATED'
+                'status' => 'NON-AKTIF'
             ]);
         } else {
             $user =  User::create([
@@ -98,7 +98,12 @@ class RegisterController extends Controller
                 'roles' => 'MEMBER'
             ]);
             Member::create([
-                'users_id' => $user->id
+                'users_id' => $user->id,
+                'profesi' => 'Silahkan dilengkapi',
+                'no_handphone' => '08XX XXXX XXXX',
+                'about' => 'Silahkan dilengkapi',
+                'address' => 'Silahkan dilengkapi',
+                'status' => 'NON-AKTIF'
             ]);
         }
 
