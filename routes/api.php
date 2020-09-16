@@ -31,4 +31,11 @@ Route::prefix('v1')
         Route::resource('companyPackage', 'Company\PackageController');
         Route::resource('companyPackageFeature', 'Company\PackageFeatureController');
         Route::get('company/search/{keyword}', 'Company\CompanyController@search');
+
+        // Job
+        Route::resource('job', 'Job\JobController');
+        Route::resource('jobTag', 'Job\TagController');
+        Route::resource('jobCategory', 'Job\CategoryController');
+        Route::resource('jobTagDetail', 'Job\TagDetailController');
+        Route::get('job/search/{keyword}', 'Job\JobController@search');
     });
