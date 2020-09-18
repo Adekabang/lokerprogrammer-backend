@@ -13,7 +13,7 @@ class MyCourseController extends Controller
      */
     public function index()
     {
-        return 'Welcome';
+        return 'welcome';
     }
 
     /**
