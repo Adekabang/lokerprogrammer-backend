@@ -18,7 +18,7 @@ class JobController extends BaseController
     public function index()
     {
         //
-        $job = Job::with('category','companies')->get();
+        $job = Job::with('category', 'companies')->get();
         return $this->sendResponse(JobResource::collection($job), 'Job retrieved successfully');
     }
 
@@ -52,9 +52,9 @@ class JobController extends BaseController
     public function show($id)
     {
         //
-        $job = Job::with('category','companies')->find($id);
+        $job = Job::with('category', 'companies')->find($id);
 
-        if(is_null($job)){
+        if (is_null($job)) {
             return $this->sendError('Job not found');
         }
 
@@ -95,12 +95,13 @@ class JobController extends BaseController
         //
     }
 
-    public function search(Request $request, $keyword){
-        $job = Job::with('companies','category')->where('name', 'like', '%' . $keyword . '%')->get();
+    public function search(Request $request, $keyword)
+    {
+        $job = Job::with('companies', 'category')->where('name', 'like', '%' . $keyword . '%')->orWhere('location', 'like', '%' . $keyword . '%')->get();
         //toArray()
         //return $company
 
-        if(is_null($job)){
+        if (is_null($job)) {
             return $this->sendError('Job not found');
         }
 
