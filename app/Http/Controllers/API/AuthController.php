@@ -4,10 +4,11 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
+use App\Models\Member\{Member, MemberSocial};
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Validator;
-use DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends BaseController
 {
@@ -27,7 +28,17 @@ class AuthController extends BaseController
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
+        $input['roles'] = 'MEMBER';
         $user = User::create($input);
+        $idnya = $user->id;
+        Member::create([
+            'users_id' => $idnya
+        ]);
+        MemberSocial::create([
+            'members_id' => $idnya
+        ]);
+        // dst CREATE for others member_tables
+
         $success['token'] = $user->createToken('MyApp')->accessToken;
         $success['name'] = $user->name;
 

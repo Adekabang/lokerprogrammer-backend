@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBlogCategoriesTable extends Migration
+class CreateMemberSocialsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateBlogCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_blogs', function (Blueprint $table) {
+        Schema::create('member_socials', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('category_name')->unique();
-            $table->string('slug');
+            $table->unsignedBigInteger('members_id');
+            $table->string('gmail');
+            $table->string('github');
+            $table->string('whatsapp');
+            $table->string('linkedin');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateBlogCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_blogs');
+        Schema::dropIfExists('member_socials');
     }
 }

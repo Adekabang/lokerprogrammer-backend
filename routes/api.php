@@ -8,12 +8,21 @@ Route::prefix('v1')
         Route::post('register', 'AuthController@register');
         Route::post('login', 'AuthController@login');
 
+        //Members
+        Route::namespace('Member')
+            ->middleware('auth:api')
+            ->group(function () {
+                Route::resource('members', 'MemberController');
+                Route::resource('memberSocial', 'MemberSocialController');
+            });
+
         //For Authenticated User
         Route::middleware('auth:api')->group(function () {
             Route::post('logout', 'AuthController@logout');
             Route::get('show', 'UserController@show');
             Route::resource('lesson', 'Course\LessonController');
         });
+
         Route::get('/course/search/{keyword}', 'Course\CourseController@search');
         Route::resource('course', 'Course\CourseController');
         Route::resource('courseCategory', 'Course\CategoryController');
