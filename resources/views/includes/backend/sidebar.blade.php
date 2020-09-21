@@ -11,7 +11,7 @@
           <a href="{{ route('dashboard') }}" class="nav-link"><i class="fas fa-warehouse"></i><span>Dashboard</span></a>
         </li>
         <li class="menu-header">Courses</li>
-        <li class="nav-item dropdown {{ (request()->segment(2) == 'course') || (request()->segment(2) == 'courseCategory') || (request()->segment(2) == 'lesson') || (request()->segment(2) == 'coursePackage') || (request()->segment(2) == 'coursePackageFeature') || (request()->segment(2) == 'courseSubCategory') ? 'active' : ''}}">
+        <li class="nav-item dropdown {{ (request()->segment(2) == 'course') || (request()->segment(2) == 'courseCategory') || (request()->segment(2) == 'lesson') || (request()->segment(2) == 'coursePackage') || (request()->segment(2) == 'coursePackageFeature') || (request()->segment(2) == 'courseSubCategory') || (request()->segment(2) == 'courseExercise') ? 'active' : ''}}">
           <a href="#" class="nav-link has-dropdown"><i class="fas fa-book"></i><span>Course</span></a>
           <ul class="dropdown-menu">
             <li class="{{ (request()->segment(2) == 'courseCategory') ? 'active' : ''}}"><a class="nav-link" href="{{ route('courseCategory.index') }}">Course Categories </a></li>
@@ -22,6 +22,7 @@
             
             <li class="{{ (request()->segment(2) == 'course') ? 'active' : ''}}"><a class="nav-link" href="{{ route('course.index') }}">Course Lists </a></li>
             <li class="{{ (request()->segment(2) == 'lesson') ? 'active' : ''}}"><a class="nav-link" href="{{ route('lesson.index') }}">Course Lessons</a></li>
+            <li class="{{ (request()->segment(2) == 'courseExercise') ? 'active' : ''}}"><a class="nav-link" href="{{ route('courseExercise.index') }}">Course Exercises</a></li>
           </ul>
         </li>
 

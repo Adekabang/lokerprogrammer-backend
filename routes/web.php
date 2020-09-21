@@ -11,11 +11,13 @@ Route::prefix('admin')
         Route::namespace('Course')
             ->group(function () {
                 Route::get('/course/show', 'CourseController@showAll')->name('show-course');
+                Route::get('showExercise/{id}', 'CourseExerciseController@showCourse')->name('showCourse');
                 Route::resource('course', 'CourseController');
                 Route::resource('coursePackage', 'CoursePackageController');
                 Route::resource('coursePackageFeature', 'CoursePackageFeatureController');
                 Route::resource('courseCategory', 'CategoryController');
                 Route::resource('courseSubCategory', 'SubCategoryCourseController');
+                Route::resource('courseExercise', 'CourseExerciseController');
                 Route::resource('lesson', 'LessonController');
                 Route::resource('courseTransaction', 'CourseTransactionController');
             });
@@ -60,6 +62,7 @@ Route::get('/table/courseSubCategory', 'Admin\Course\SubCategoryCourseController
 Route::get('/table/coursePackage', 'Admin\Course\CoursePackageController@dataTable')->name('table.coursePackage');
 Route::get('/table/coursePackageFeature', 'Admin\Course\CoursePackageFeatureController@dataTable')->name('table.coursePackageFeature');
 Route::get('/table/courseTransaction', 'Admin\Course\CourseTransactionController@dataTable')->name('table.courseTransaction');
+Route::get('/table/courseExercise/{id}', 'Admin\Course\CourseExerciseController@dataTable')->name('table.courseExercise');
 
 // Midtrans
 Route::namespace('Midtrans')->group(function () {
