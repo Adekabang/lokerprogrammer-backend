@@ -27,7 +27,7 @@ class CategoryBlogRequest extends FormRequest
         return [
             'category_name' => [
                 'required',
-                Rule::unique('categori_blogs', 'category_name')->ignore($this->category)
+                Rule::unique('category_blogs', 'category_name')->ignore($this->category)
             ]
         ];
     }

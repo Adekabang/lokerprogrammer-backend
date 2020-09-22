@@ -11,11 +11,6 @@ use Illuminate\Support\Facades\Validator;
 
 class MemberSocialController extends BaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $user = Auth::user();
@@ -23,32 +18,7 @@ class MemberSocialController extends BaseController
         return $this->sendResponse(new SocialResource($social), 'Member socials retrieved successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $user = Auth::user();
-        $social = MemberSocial::with('member')->where('members_id', $user->id)->first();
-
-        if (is_null($social)) {
-            return $this->sendError('Member social not found.');
-        }
-
-        return $this->sendResponse(new SocialResource($social), 'Member social retrieved successfully.');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
+    public function updateMemberSocial(Request $request)
     {
         $user = Auth::user();
         $social = MemberSocial::where('members_id', $user->id)->first();

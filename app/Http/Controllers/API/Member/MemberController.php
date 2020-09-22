@@ -16,7 +16,7 @@ class MemberController extends BaseController
     return $this->sendResponse(MemberResource::collection($social), 'Members retrieved successfully.');
   }
 
-  public function show($id)
+  public function detailMember()
   {
     $user = Auth::user();
     $social = Member::with('user')->where('users_id', $user->id)->first();

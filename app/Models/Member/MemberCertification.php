@@ -4,9 +4,9 @@ namespace App\Models\Member;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MemberSocial extends Model
+class MemberCertification extends Model
 {
-    protected $fillable = ['members_id', 'gmail', 'github', 'whatsapp', 'linkedin'];
+    protected $fillable = ['members_id', 'certification_name', 'description', 'attachment_image'];
 
     public function member()
     {

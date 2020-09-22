@@ -12,8 +12,16 @@ Route::prefix('v1')
         Route::namespace('Member')
             ->middleware('auth:api')
             ->group(function () {
-                Route::resource('members', 'MemberController');
-                Route::resource('memberSocial', 'MemberSocialController');
+                Route::get('all-member', 'MemberController@index')->name('show-all-member');
+                Route::get('detail-member', 'MemberController@detailMember')->name('show-member');
+
+                //Member Socials
+                Route::get('member-social', 'MemberSocialController@index')->name('member-social');
+                Route::put('update-social', 'MemberSocialController@updateMemberSocial')->name('update-member-social');
+
+                //Member Certifications
+                Route::get('member-certification', 'MemberCertificationController@index')->name('member-certification');
+                Route::post('update-certification/{id}', 'MemberCertificationController@updateMemberCertification')->name('update-member-certification');
             });
 
         //For Authenticated User

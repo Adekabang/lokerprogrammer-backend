@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Member\Member;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -38,7 +39,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    function user(){
-        return $this->hasMany(CourseTransaction::class, 'users_id','id');
+    function user()
+    {
+        return $this->hasMany(CourseTransaction::class, 'users_id', 'id');
     }
 }
