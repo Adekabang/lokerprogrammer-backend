@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
-use App\Models\Member\{Member, MemberSocial};
+use App\Models\Member\{Member, MemberSocial, MemberEducation, MemberExperience};
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -35,6 +35,12 @@ class AuthController extends BaseController
             'users_id' => $idnya
         ]);
         MemberSocial::create([
+            'members_id' => $idnya
+        ]);
+        MemberEducation::create([
+            'members_id' => $idnya
+        ]);
+        MemberExperience::create([
             'members_id' => $idnya
         ]);
         // dst CREATE for others member_tables

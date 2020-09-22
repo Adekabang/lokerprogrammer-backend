@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(MemberSeeder::class);
         $this->call(MemberSocialSeeder::class);
         $this->call(MemberCertificationSeeder::class);
+        $this->call(MemberEducationSeeder::class);
+        $this->call(MemberExperienceSeeder::class);
         factory(Course::class, 3)->create();
         factory(Blog::class, 3)->create();
         factory(Company::class, 3)->create();

@@ -22,7 +22,17 @@ Route::prefix('v1')
                 //Member Certifications
                 Route::get('member-certification', 'MemberCertificationController@index')->name('member-certification');
                 Route::post('update-certification/{id}', 'MemberCertificationController@updateMemberCertification')->name('update-member-certification');
+
+                //Member Education
+                Route::get('member-education',  'MemberEducationController@index')->name('member-education');
+                Route::post('update-education/{id}', 'MemberEducationController@updateMemberEducation')->name('update-member-education');
+
+                //Member Experience
+                Route::get('member-experience', 'MemberExperienceController@index')->name('member-experience');
+                Route::post('update-experience/{id}', 'MemberExperienceController@updateMemberExperience')->name('update-member-experience');
             });
+
+        
 
         //For Authenticated User
         Route::middleware('auth:api')->group(function () {
