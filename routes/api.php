@@ -32,7 +32,13 @@ Route::prefix('v1')
                 Route::post('update-experience/{id}', 'MemberExperienceController@updateMemberExperience')->name('update-member-experience');
             });
 
-        
+
+
+            // skills
+            Route::resource('memberSkills', 'MemberSkills\SkillsController');
+            Route::resource('categorySkill', 'MemberSkills\CategorySkillsController');
+            Route::put('update-memberSkills/{id}', 'MemberSkills\SkillsController@update')->name('update-memberSkills');;
+
 
         //For Authenticated User
         Route::middleware('auth:api')->group(function () {
