@@ -18,7 +18,7 @@ class CreateMemberExperiencesTable extends Migration
             $table->unsignedBigInteger('members_id');
             $table->string('nama_perusahaan');
             $table->timestamp('tanggal_masuk');
-            $table->timestamp('tanggal_keluar')->default(\DB::raw('CURRENT_TIMESTAMP'));;
+            $table->timestamp('tanggal_keluar');
             $table->timestamps();
         });
     }
