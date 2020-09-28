@@ -30,9 +30,12 @@ Route::prefix('v1')
                 //Member Experience
                 Route::get('member-experience', 'MemberExperienceController@index')->name('member-experience');
                 Route::post('update-experience/{id}', 'MemberExperienceController@updateMemberExperience')->name('update-member-experience');
+
+                
             });
-
-
+            //Member Language
+            Route::get('member-language', 'MemberLanguage\LanguageController@index');
+            Route::post('member-language/{id}', 'MemberLanguage\LanguageController@updateLanguage');
 
             // skills
             Route::resource('memberSkills', 'MemberSkills\SkillsController');
@@ -71,4 +74,6 @@ Route::prefix('v1')
         Route::resource('jobCategory', 'Job\CategoryController');
         Route::resource('jobTagDetail', 'Job\TagDetailController');
         Route::get('job/search/{keyword}', 'Job\JobController@search');
+        Route::get('apply', 'Job\ApplyController@index');
+        Route::post('apply/{id}', 'Job\ApplyController@update');
     });

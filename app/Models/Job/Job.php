@@ -28,4 +28,8 @@ class Job extends Model
     {
         return $this->belongsTo(JobTag::class);
     }
+    public function apply()
+    {
+        return $this->hasMany(Apply::class);
+    }
 }

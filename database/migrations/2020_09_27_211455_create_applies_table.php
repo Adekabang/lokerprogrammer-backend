@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMemberExperiencesTable extends Migration
+class CreateAppliesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateMemberExperiencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('member_experiences', function (Blueprint $table) {
+        Schema::create('applies', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('members_id');
-            $table->string('nama_perusahaan');
-            $table->timestamp('tanggal_masuk');
-            $table->timestamp('tanggal_keluar')->default(\DB::raw('CURRENT_TIMESTAMP'));;
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('job_id');
+            $table->string('status_apply');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateMemberExperiencesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('member_experiences');
+        Schema::dropIfExists('applies');
     }
 }
