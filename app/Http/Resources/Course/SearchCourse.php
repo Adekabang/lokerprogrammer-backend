@@ -19,8 +19,6 @@ class SearchCourse extends JsonResource
                 'label' => $course->label,
                 'thumbnail' => $course->thumbnail,
                 'description' => $course->description,
-                'created_at' => Carbon::parse($course->created_at)->format('d-m-Y'),
-                'updated_at' => Carbon::parse($course->updated_at)->format('d-m-Y'),
                 'category' => $course->category,
                 'sub_category' => $course->subCategory
             );

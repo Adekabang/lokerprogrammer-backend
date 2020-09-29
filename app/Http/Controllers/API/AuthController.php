@@ -4,7 +4,8 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
-use App\Models\Member\{Member, MemberSocial, MemberEducation, MemberExperience};
+use App\Models\Member\{Member, MemberCertification, MemberSocial, MemberEducation, MemberExperience};
+use App\Models\Skills\Skills;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -19,7 +20,7 @@ class AuthController extends BaseController
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'min:3', 'max:25', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8','confirmed']
+            'password' => ['required', 'string', 'min:8', 'confirmed']
         ]);
 
         if ($validator->fails()) {
@@ -34,6 +35,9 @@ class AuthController extends BaseController
         Member::create([
             'users_id' => $idnya
         ]);
+        MemberCertification::create([
+            'members_id' => $idnya
+        ]);
         MemberSocial::create([
             'members_id' => $idnya
         ]);
@@ -42,6 +46,10 @@ class AuthController extends BaseController
         ]);
         MemberExperience::create([
             'members_id' => $idnya
+        ]);
+        Skills::create([
+            'members_id' => $idnya,
+            'category_skills_id' => 1
         ]);
         // dst CREATE for others member_tables
 

@@ -17,9 +17,9 @@ class CourseController extends BaseController
         return $this->sendResponse(CourseResource::collection($courses), 'Courses retrieved successfully.');
     }
 
-    public function show($id)
+    public function showCourse($slug)
     {
-        $course = Course::with('category', 'subCategory')->find($id);
+        $course = Course::with('category', 'subCategory')->where('slug', $slug)->first();
 
         if (is_null($course)) {
             return $this->sendError('Course not found.');

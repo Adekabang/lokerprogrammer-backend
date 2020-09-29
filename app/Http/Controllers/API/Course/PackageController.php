@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\Course;
 
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Http\Resources\Course\Package as PackageResource;
-use App\Models\Course\CoursePackageFeature;
+use App\Models\Course\{CoursePackageFeature, CoursePackage};
 
 class PackageController extends BaseController
 {
@@ -15,9 +15,10 @@ class PackageController extends BaseController
         return $this->sendResponse(PackageResource::collection($packages), 'Course package retrieved successfully.');
     }
 
-    public function show($id)
+    public function showPackage($slug)
     {
-        $package = CoursePackageFeature::with('coursePackage')->find($id);
+        $id = CoursePackage::where('slug', $slug)->firstOrFail();
+        $package = CoursePackageFeature::with('coursePackage')->where('course_packages_id', $id->id)->first();
 
         if (is_null($package)) {
             return $this->sendError('Package not found.');

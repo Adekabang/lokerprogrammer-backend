@@ -22,8 +22,6 @@ class Member extends JsonResource
             'about' => $this->about,
             'address' => $this->address,
             'status' => $this->status,
-            'created_at' => Carbon::parse($this->created_at)->format('d-m-Y'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d-m-Y'),
             'user' => $this->user
         ];
     }

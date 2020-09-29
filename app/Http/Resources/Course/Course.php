@@ -17,8 +17,6 @@ class Course extends JsonResource
             'label' => $this->label,
             'thumbnail' => $this->thumbnail,
             'description' => $this->description,
-            'created_at' => Carbon::parse($this->created_at)->format('d-m-Y'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d-m-Y'),
             'category' => $this->category,
             'sub_category' => $this->subCategory
         ];

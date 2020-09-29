@@ -13,9 +13,7 @@ class Package extends JsonResource
             'id' => $this->id,
             'package_name' => $this->coursePackage->package_name,
             'feature_name' => $this->feature_name,
-            'price' => $this->coursePackage->price,
-            'created_at' => $this->created_at->format('d/m/Y'),
-            'updated_at' => $this->updated_at->format('d/m/Y'),
+            'price' => $this->coursePackage->price
         ];
     }
 }

@@ -15,9 +15,9 @@ class LessonController extends BaseController
         return $this->sendResponse(LessonResource::collection($courses), 'Lessons retrieved successfully.');
     }
 
-    public function show($id)
+    public function showLesson($slug)
     {
-        $course = CourseLesson::find($id);
+        $course = CourseLesson::where('slug', $slug)->first();
         if (is_null($course)) {
             return $this->sendError('Lesson not found.');
         }

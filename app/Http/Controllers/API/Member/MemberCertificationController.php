@@ -18,10 +18,10 @@ class MemberCertificationController extends BaseController
         return $this->sendResponse(CertificationResource::collection($certification), 'Member certification retrieved successfully.');
     }
 
-    public function updateMemberCertification(Request $request, $id)
+    public function updateMemberCertification(Request $request)
     {
         $user = Auth::user();
-        $certification = MemberCertification::where('members_id', $user->id)->where('id', $id)->first();
+        $certification = MemberCertification::where('members_id', $user->id)->first();
         if (is_null($certification)) {
             return $this->sendError('Member certification not found.');
         }

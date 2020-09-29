@@ -16,9 +16,7 @@ class Lesson extends JsonResource
             'episode' => $this->episode,
             'status' => $this->status,
             'video' => "https://www.youtube.com/embed/" . $this->video,
-            'duration' => $this->duration,
-            'created_at' => $this->created_at->format('d/m/Y'),
-            'updated_at' => $this->updated_at->format('d/m/Y'),
+            'duration' => $this->duration
         ];
     }
 }

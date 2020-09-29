@@ -15,12 +15,11 @@ class CreateMemberSkillsTable extends Migration
     {
         Schema::create('member_skills', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('members_id');
             $table->unsignedBigInteger('category_skills_id');
             $table->string('skill_name');
             $table->string('skills_persentase');
             $table->timestamps();
-
-            $table->foreign('category_skills_id')->references('id')->on('category_skills')->onDelete('cascade');
         });
     }
 

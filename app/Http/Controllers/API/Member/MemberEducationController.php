@@ -8,7 +8,6 @@ use App\Http\Resources\Member\Education as EducationResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\Controller;
 
 class MemberEducationController extends BaseController
 {
@@ -47,6 +46,6 @@ class MemberEducationController extends BaseController
         $education->tanggal_keluar = $input['tanggal_keluar'];
         $education->save();
 
-        return $this->sendResponse(new EducationResource($education), 'Education updated successfully.');        
+        return $this->sendResponse(new EducationResource($education), 'Education updated successfully.');
     }
 }
