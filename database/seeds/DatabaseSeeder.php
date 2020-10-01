@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CoursePackageFeatureSeeder::class);
         $this->call(CompanyPackageSeeder::class);
         $this->call(CompanyPackageFeatureSeeder::class);
-        $this->call(CategorySkillSeeder::class);
-        $this->call(SkillSeeder::class);
+        //$this->call(CategorySkillSeeder::class);
+        //$this->call(SkillSeeder::class);
     }
 }

@@ -18,8 +18,6 @@ class JobTag extends JsonResource
         return [
             'id' => $this->id,
             'tag_id' => $this->tag_id,
-            'created_at' => Carbon::parse($this->created_at)->format('d-m-Y'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d-m-Y')
         ];
     }
 }

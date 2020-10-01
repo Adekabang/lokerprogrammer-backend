@@ -25,8 +25,6 @@ class Company extends JsonResource
             'contact' => $this->contact,
             'description' =>$this->description,
             'status' => $this->status,
-            'created_at' => Carbon::parse($this->created_at)->format('d-m-Y'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d-m-Y'),
        ];
     }
 }

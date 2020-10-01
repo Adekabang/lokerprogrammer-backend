@@ -11,12 +11,10 @@ use Illuminate\Support\Facades\Validator;
 class ApplyController extends BaseController
 {
     public function index(){
-        // $users = Auth::user();
         $applies = Apply::orderby('created_at', 'DESC')->get();
         return $this->sendResponse(ApplyResource::collection($applies), 'Apply Job retrieved successfully.');
     }
     public function update(Request $request, $id){
-        // $user = Auth::user();
         $applies = Apply::where('id', $id)->first();
         if (is_null($applies)) {
             return $this->sendError('Apply Job not found.');

@@ -15,11 +15,11 @@ class CompanyController extends BaseController
         return $this->sendResponse(CompanyResource::collection($company),'Company retrieved successfully.');
     }
     
-    public function show($id) {
-       $company = company::with('category','jobs')->find($id);
+    public function show($slug) {
+       $company = company::with('category','jobs')->where('slug', $slug)->first();
        
        if (is_null($company)) {
-           return $this->sendError('Course not found.');
+           return $this->sendError('Company not found.');
        }
 
        return $this->sendResponse(new CompanyResource($company), 'Company retrieved successfully.');

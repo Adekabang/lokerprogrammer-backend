@@ -26,8 +26,6 @@ class Job extends JsonResource
             'requirement' => $this->requirement,
             'required_skill' => $this->required_skill,
             'description' => $this->description,
-            'created_at' => Carbon::parse($this->created_at)->format('d-m-Y'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d-m-Y')
         ];
     }
 }

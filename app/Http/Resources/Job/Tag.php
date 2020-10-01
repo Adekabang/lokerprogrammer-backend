@@ -19,8 +19,6 @@ class Tag extends JsonResource
             'id' => $this->id,
             'tag_name' => $this->tag_name,
             'slug' => $this->slug,
-            'created_at' => Carbon::parse($this->created_at)->format('d-m-Y'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d-m-Y')
         ];
     }
 }

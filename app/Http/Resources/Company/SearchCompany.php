@@ -27,8 +27,6 @@ class SearchCompany extends JsonResource
                  'contact' => $company->contact,
                  'description' =>$company->description,
                  'status' => $company->status,
-                 'created_at' => Carbon::parse($company->created_at)->format('d-m-Y'),
-                 'updated_at' => Carbon::parse($company->updated_at)->format('d-m-Y'),
             );
         }
         return $companies;

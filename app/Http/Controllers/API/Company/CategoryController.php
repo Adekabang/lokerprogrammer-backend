@@ -15,8 +15,8 @@ class CategoryController extends BaseController
         return $this->sendResponse(CategoryResource::collection($category),'Category Company retrieved successfully.');
     }
 
-    public function show($id) {
-        $category = CategoryCompany::find($id);
+    public function show($slug) {
+        $category = CategoryCompany::where('slug', $slug)->first();
 
         if (is_null($category)) {
             return $this->sendError('Category Company Not Found.');

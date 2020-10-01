@@ -14,8 +14,8 @@ class PackageController extends BaseController
         return $this->sendResponse(PackageResource::collection($package), 'Package Company retrieved successfully.');
     }
 
-    public function show($id) {
-        $package = CompanyPackage::find($id);
+    public function show($slug) {
+        $package = CompanyPackage::where('slug', $slug)->first();
 
         if(is_null($package)){
             return $this->sendError('Package Company Not Found. ');

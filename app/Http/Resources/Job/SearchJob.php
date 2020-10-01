@@ -28,8 +28,6 @@ class SearchJob extends JsonResource
                 'requirement' => $job->requirement,
                 'required_skill' => $job->required_skill,
                 'description' => $job->description,
-                'created_at' => Carbon::parse($job->created_at)->format('d-m-Y'),
-                'updated_at' => Carbon::parse($job->updated_at)->format('d-m-Y')
             );
         }
         return $jobs;

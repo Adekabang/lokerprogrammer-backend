@@ -17,6 +17,7 @@ class CreateCompanyPackageFeaturesTable extends Migration
             $table->id();
             $table->foreignId('company_packages_id')->nullable()->constrained();
             $table->string('feature_name');
+            $table->string('slug');
             $table->timestamps();
         });
     }

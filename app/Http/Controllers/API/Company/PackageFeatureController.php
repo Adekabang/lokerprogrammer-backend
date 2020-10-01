@@ -14,8 +14,8 @@ class PackageFeatureController extends BaseController
         return $this->sendResponse(PackageFeatureResource::collection($fackageFeature),'Package Feature Company retrieved successfully.');
     }
 
-    public function show($id){
-        $fackageFeature = CompanyPackageFeature::with('companyPackage')->find($id);
+    public function show($slug){
+        $fackageFeature = CompanyPackageFeature::with('companyPackage')->where('slug', $slug)->first();
         
         if (is_null($fackageFeature)) {
             return $this->sendError('Package Feature Company Not Found');

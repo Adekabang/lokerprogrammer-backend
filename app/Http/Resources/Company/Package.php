@@ -19,8 +19,6 @@ class Package extends JsonResource
             'id' => $this->id,
             'package_name' => $this->package_name,
             'price' => $this->price,
-            'created_at' => Carbon::parse($this->created_at)->format('d-m-Y'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d-m-Y'),
         ];
     }
 }

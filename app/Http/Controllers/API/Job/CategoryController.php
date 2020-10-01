@@ -11,15 +11,13 @@ class CategoryController extends BaseController
 {
     public function index()
     {
-        //
         $category = CategoryJob::all();
         return $this->sendResponse(CategoryResource::collection($category), 'Category Job retrieved successfully.');
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        //
-        $category = CategoryJob::find($id);
+        $category = CategoryJob::where('slug', $slug)->first();
 
         if(is_null($category)){
             return $this->sendError('Category Job Not Found');
