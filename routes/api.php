@@ -30,16 +30,18 @@ Route::prefix('v1')
                 //Member Experience
                 Route::get('member-experience', 'MemberExperienceController@index')->name('member-experience');
                 Route::post('update-experience/{id}', 'MemberExperienceController@updateMemberExperience')->name('update-member-experience');
+
+                 // skills
+                Route::resource('member-Skills', 'Skills\SkillsController');
+                Route::resource('categorySkill', 'Skills\CategorySkillsController');
+                Route::post('update-Skills/{id}', 'Skills\SkillsController@update')->name('update-memberSkills');
             });
         // Start Routing salah tempat
         //Member Language
         Route::get('member-language', 'MemberLanguage\LanguageController@index');
         Route::post('member-language/{id}', 'MemberLanguage\LanguageController@updateLanguage');
 
-        // skills
-        Route::resource('memberSkills', 'MemberSkills\SkillsController');
-        Route::resource('categorySkill', 'MemberSkills\CategorySkillsController');
-        Route::put('update-memberSkills/{id}', 'MemberSkills\SkillsController@update')->name('update-memberSkills');
+       
         // End Routing salah tempat
 
 

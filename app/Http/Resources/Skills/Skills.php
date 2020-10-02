@@ -20,8 +20,7 @@ class Skills extends JsonResource
             'category_skills_id' => $this->category_skills_id,
             'skill_name' => $this->skill_name,
             'skills_persentase' => $this->skills_persentase,
-            'created_at' => Carbon::parse($this->created_at)->format('d-m-Y'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d-m-Y')
+            
         ];
     }
 }
