@@ -19,8 +19,8 @@ class Skills extends JsonResource
             'id' => $this->id,
             'category_skills_id' => $this->category_skills_id,
             'skill_name' => $this->skill_name,
+            'slug'=>$this->skill_name,
             'skills_persentase' => $this->skills_persentase,
-            
         ];
     }
 }

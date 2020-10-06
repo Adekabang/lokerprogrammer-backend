@@ -17,8 +17,8 @@ class SkillsController extends BaseController
         return $this->sendResponse(SkillsResource::collection($skills),'Skills retrieved successfully');
     }
 
-    public function show($id){
-        $skills = Skills::with('category_skills')->find($id);
+    public function show($slug){
+        $skills = Skills::with('category_skills')->where('slug',$slug)->first();
         
         if (is_null($skills)) {
             return $this->sendError('Skills Not Found !!');

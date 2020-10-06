@@ -17,6 +17,7 @@ class CreateMemberSkillsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('members_id');
             $table->unsignedBigInteger('category_skills_id');
+            $table->string('slug');
             $table->string('skill_name');
             $table->string('skills_persentase');
             $table->timestamps();

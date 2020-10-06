@@ -18,8 +18,7 @@ class CategorySkills extends JsonResource
         return [
             'id' => $this->id,
             'category_name'=> $this->category_name,
-            'slug'=> $this->slug,
-           
+            'slug'=> $this->slug,  
         ];
     }
 }

@@ -25,8 +25,6 @@ class SearchBlog extends JsonResource
             'slug_blog_id' => $blog->slug_blog_id,
             'content_blog' => $blog->content_blog,
             'image' => $blog->images,
-            'created_at' => Carbon::parse($blog->created_at)->format('d-m-Y'),
-            'updated_at' => Carbon::parse($blog->updated_at)->format('d-m-Y'),
             );
         }
         return $blogs;

@@ -15,8 +15,8 @@ class CategoryController extends BaseController
         return $this->sendResponse(CategoryResource::collection($category),'Category Blog retrieved successfully.');
     }
 
-    public function show($id){
-        $category=CategoryBlog::find($id);
+    public function show($slug){
+        $category=CategoryBlog::where('slug',$slug)->first();
 
         if(is_null($category)){
             return $this->sendError('Category Blog Not Found.');

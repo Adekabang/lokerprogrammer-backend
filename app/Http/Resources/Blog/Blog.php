@@ -22,8 +22,6 @@ class Blog extends JsonResource
             'slug_blog_id' => $this->slug_blog_id,
             'content_blog' => $this->content_blog,
             'image' => $this->images,
-            'created_at' => Carbon::parse($this->created_at)->format('d-m-Y'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d-m-Y'),
         ];
     }
 }
