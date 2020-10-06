@@ -15,34 +15,37 @@ Route::prefix('v1')
                 Route::get('all-member', 'MemberController@index')->name('show-all-member');
                 Route::get('detail-member', 'MemberController@detailMember')->name('show-member');
 
-                //Member Socials
+                // Member Socials
                 Route::get('member-social', 'MemberSocialController@index')->name('member-social');
                 Route::put('update-social', 'MemberSocialController@updateMemberSocial')->name('update-member-social');
 
-                //Member Certifications
+                // Member Certifications
                 Route::get('member-certification', 'MemberCertificationController@index')->name('member-certification');
                 Route::post('update-certification', 'MemberCertificationController@updateMemberCertification')->name('update-member-certification');
 
-                //Member Education
+                // Member Education
                 Route::get('member-education',  'MemberEducationController@index')->name('member-education');
                 Route::post('update-education/{id}', 'MemberEducationController@updateMemberEducation')->name('update-member-education');
 
-                //Member Experience
+                // Member Experience
                 Route::get('member-experience', 'MemberExperienceController@index')->name('member-experience');
                 Route::post('update-experience/{id}', 'MemberExperienceController@updateMemberExperience')->name('update-member-experience');
 
-                 // skills
+                // Member Skills
                 Route::resource('member-Skills', 'Skills\SkillsController');
                 Route::resource('categorySkill', 'Skills\CategorySkillsController');
                 Route::post('update-Skills/{id}', 'Skills\SkillsController@update')->name('update-memberSkills');
-            });
-        // Start Routing salah tempat
-        //Member Language
-        Route::get('member-language', 'MemberLanguage\LanguageController@index');
-        Route::post('member-language/{id}', 'MemberLanguage\LanguageController@updateLanguage');
 
-       
-        // End Routing salah tempat
+                // Member Language
+                Route::get('member-language', 'MemberLanguage\LanguageController@index');
+                Route::post('member-language/{id}', 'MemberLanguage\LanguageController@updateLanguage');
+
+                // Member Course
+                Route::get('my-course', 'MyCourseController@index')->name('my-course');
+                Route::get('my-course/show/{slug}', 'MyCourseController@showCourse')->name('my-course');
+                Route::get('my-course/lesson/{slug}/', 'MyCourseController@showLesson')->name('my-lesson');
+                Route::get('my-course/{slug}/{eps}', 'MyCourseController@watchLesson')->name('watch-lesson');
+            });
 
 
         //For Authenticated User or Member

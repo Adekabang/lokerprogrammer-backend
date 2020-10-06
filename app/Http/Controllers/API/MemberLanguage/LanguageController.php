@@ -2,20 +2,27 @@
 
 namespace App\Http\Controllers\API\MemberLanguage;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Language\Language;
 use App\Http\Resources\Language\Language as LanguageResource;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\API\BaseController as BaseController;
+
 class LanguageController extends BaseController
 {
-    public function index(){
+    public function index()
+    {
+        // Ambil data language ini sesuai dgn user yg sedang login
+        // Silahkn dicntoh codingan yg sdh ada!
         $languages = Language::all();
         return $this->sendResponse(LanguageResource::collection($languages), 'Language retrieved successfully.');
     }
-    public function updateLanguage(Request $request, $id){
-        $languages = Language::where('id',$id)->first();
+
+    public function updateLanguage(Request $request, $id)
+    {
+        // Perubahan data jg sama, ambil dlu data language ini sesuai dgn user yg sedang login
+        // Silahkn dicntoh codingan yg sdh ada!
+        $languages = Language::where('id', $id)->first();
         if (is_null($languages)) {
             return $this->sendError('Language certification not found.');
         }
@@ -28,7 +35,7 @@ class LanguageController extends BaseController
         if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors());
         }
-       $languages->update($data);
+        $languages->update($data);
 
         return $this->sendResponse(new LanguageResource($languages), 'Languages updated successfully.');
     }

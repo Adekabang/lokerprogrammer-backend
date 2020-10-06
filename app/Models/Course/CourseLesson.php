@@ -12,4 +12,9 @@ class CourseLesson extends Model
     {
         return $this->hasOne(Course::class, 'id', 'course_id');
     }
+
+    public function myCourse()
+    {
+        return $this->hasMany(MyCourse::class);
+    }
 }
